@@ -1,6 +1,6 @@
 package WhereToWalk;
 
-import java.net.URL;
+import javax.swing.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,30 +17,42 @@ public class Main
 {
     public static void main(String[] args)
     {
-        String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
-        try
-        {
-            InputStream is = new URL(url).openStream();
-            try {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-                StringBuilder sb = new StringBuilder();
-                int cp;
-                while ((cp = rd.read()) != -1)
-                {
-                    sb.append((char)cp);
-                }
-                String jsonText = sb.toString();
-                // String jsonText = readAll(rd);
-                JSONObject json = new JSONObject(jsonText);
+        JFrame frame = new JFrame();
+        float aspect = 16.f /9.f;
+        float width = 300.f;
+        frame.setSize((int)width, (int)(width * aspect));
+        frame.setVisible(true);
+        frame.setLayout(null);
 
-                System.out.println(json.toString());
-            } finally {
-                is.close();
-            }
-        }
-        catch (java.io.IOException e)
-        {
-            System.out.println("IO Exception");
-        }
+        JButton b = new JButton("Click");
+
+        b.setBounds(120, 100, 100, 40);
+        frame.add(b);
+
+        // String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
+        // try
+        // {
+        //     InputStream is = new URL(url).openStream();
+        //     try {
+        //         BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        //         StringBuilder sb = new StringBuilder();
+        //         int cp;
+        //         while ((cp = rd.read()) != -1)
+        //         {
+        //             sb.append((char)cp);
+        //         }
+        //         String jsonText = sb.toString();
+        //         // String jsonText = readAll(rd);
+        //         JSONObject json = new JSONObject(jsonText);
+        //
+        //         System.out.println(json.toString());
+        //     } finally {
+        //         is.close();
+        //     }
+        // }
+        // catch (java.io.IOException e)
+        // {
+        //     System.out.println("IO Exception");
+        // }
     }
 }
