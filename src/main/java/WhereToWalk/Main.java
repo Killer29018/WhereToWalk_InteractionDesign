@@ -17,17 +17,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        JFrame frame = new JFrame();
-        float aspect = 16.f /9.f;
-        float width = 300.f;
-        frame.setSize((int)width, (int)(width * aspect));
-        frame.setVisible(true);
-        frame.setLayout(null);
-
-        JButton b = new JButton("Click");
-
-        b.setBounds(120, 100, 100, 40);
-        frame.add(b);
+        Window window = new Window();
 
         // String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
         // try
