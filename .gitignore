@@ -1,0 +1,8 @@
+.direnv/*
+dependency-reduced-pom.xml
+.classpath
+.envrc
+.project
+target/*
+.settings/*
+.cache/*
