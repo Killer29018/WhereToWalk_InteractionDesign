@@ -1,8 +1,8 @@
 {
-    [
+    "Hills": [
         {
-            name: "Snowdown",
-            lat_long: [ 53.4659, 44.3443 ]
+            "name": "Snowdown",
+            "lat_long": [ 53.4659, 44.3443 ]
         }
     ]
 }
