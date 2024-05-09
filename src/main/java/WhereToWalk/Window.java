@@ -1,22 +1,30 @@
 package WhereToWalk;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window extends JFrame
 {
-    private float mAspectRatio = 17.0f / 9.0f;
-    private int mWidth = 200;
+    private float mAspectRatio = 16.0f / 9.0f;
+    private int mWidth = 400;
     private int mHeight;
+    private JPanel mPanel;
     // private JFrame frame;
     Window()
     {
         mHeight = (int)(mWidth * mAspectRatio);
-        setSize(mWidth, mHeight);
-        setVisible(true);
+
+        mPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
 
         JButton b = new JButton("Whomp");
-        b.setBounds(20, 10, 10, 10);
+        b.setBounds(40, 40, 100, 100);
 
-        add(b);
+        mPanel.add(b);
+
+        setLayout(new FlowLayout());
+        add(mPanel);
+        setSize(mWidth, mHeight);
+        setVisible(true);
     }
 }
