@@ -19,6 +19,7 @@ public class Main
     {
         Window window = new Window();
 
+        // HELLO I PUSHED!
         // String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
         // try
         // {
