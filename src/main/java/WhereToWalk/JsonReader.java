@@ -1,41 +1,39 @@
 package WhereToWalk;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class Window extends Application
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+public class JsonReader
 {
-    public static void main(String[] args)
+    public static JSONObject readJsonFromInputStream(InputStream stream)
     {
-        launch();
-    }
-
-    @Override
-    public void start(Stage primaryStage)
-    {
-        primaryStage.setTitle("Hello, World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event)
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            StringBuilder sb = new StringBuilder();
+            int cp;
+            while ((cp = rd.read()) != -1)
             {
-                System.out.println("Hello, World");
+                sb.append((char)cp);
             }
-        });
+            String jsonText = sb.toString();
+            // String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+            System.out.println(json.toString());
+        } finally {
+            is.close();
+        }
     }
 
-        // HELLO I PUSHED!
+    private JsonReader() {}
         // String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
         // try
         // {
@@ -61,5 +59,4 @@ public class Window extends Application
         // {
         //     System.out.println("IO Exception");
         // }
-    }
-// }
+        }
