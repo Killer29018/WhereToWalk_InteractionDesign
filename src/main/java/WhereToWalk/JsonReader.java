@@ -16,7 +16,7 @@ public class JsonReader
     public static JSONObject readJsonFromInputStream(InputStream stream)
     {
         try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            BufferedReader rd = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             StringBuilder sb = new StringBuilder();
             int cp;
             while ((cp = rd.read()) != -1)
@@ -28,8 +28,10 @@ public class JsonReader
             JSONObject json = new JSONObject(jsonText);
 
             System.out.println(json.toString());
-        } finally {
-            is.close();
+            stream.close();
+            return json;
+        } catch (Exception e) {
+            return null;
         }
     }
 

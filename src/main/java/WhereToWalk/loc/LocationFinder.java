@@ -52,8 +52,8 @@ public class LocationFinder {
             System.out.println(sb.toString());
             JSONObject json = new JSONObject(sb.toString());
             
-            lat = ((BigDecimal) json.get("lat")).doubleValue();
-            lon = ((BigDecimal) json.get("lon")).doubleValue();
+            lat = json.getDouble("lat");
+            lon = json.getDouble("lon");
 
             is.close();
             reader.close();
