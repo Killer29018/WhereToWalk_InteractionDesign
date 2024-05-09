@@ -1,4 +1,4 @@
-package WhereToWalk;
+package WhereToWalk.Backend;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,11 +8,63 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.FileInputStream;
+import java.io.File;
 import java.net.URL;
+import java.net.URI;
 import java.nio.charset.Charset;
+
 
 public class JsonReader
 {
+    public static JSONObject readJsonFromFile(String filename)
+    {
+        try
+        {
+            File file = new File(filename);
+
+            InputStream stream = new FileInputStream(file);
+            JSONObject object =  JsonReader.readJsonFromInputStream(stream);
+            stream.close();
+            return object;
+        }
+        catch (java.io.FileNotFoundException e)
+        {
+            System.out.println("File failed to initialize");
+            System.exit(-1);
+        }
+        catch (java.io.IOException e)
+        {
+            System.out.println("Failed to read file");
+            System.exit(-1);
+        }
+
+        return new JSONObject();
+    }
+
+    public static JSONObject readJsonFromURL(String url)
+    {
+        try
+        {
+            InputStream is = new URI(url).toURL().openStream();
+            JSONObject object = readJsonFromInputStream(is);
+            is.close();
+            return object;
+        }
+        catch (java.io.IOException e)
+        {
+            System.out.println("Failed to open URL");
+            System.exit(-1);
+        }
+        catch (java.net.URISyntaxException e)
+        {
+            System.out.println("Malformed URL");
+            System.exit(-1);
+        }
+
+        return new JSONObject();
+    }
+
     public static JSONObject readJsonFromInputStream(InputStream stream)
     {
         try
@@ -31,9 +83,9 @@ public class JsonReader
         }
         catch (java.io.IOException e)
         {
-            System.out.println("Fail");
+            System.out.println("Failed to parse JSON");
+            System.out.println(e.getMessage());
         }
-
 
         return new JSONObject();
     }

@@ -1,4 +1,4 @@
-package WhereToWalk;
+package WhereToWalk.Backend;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

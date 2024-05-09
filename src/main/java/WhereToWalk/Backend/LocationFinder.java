@@ -1,4 +1,4 @@
-package WhereToWalk.loc;
+package WhereToWalk.Backend;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ public class LocationFinder {
 
     // longitude
     private double lon;
-    
+
     public double getLatitude() {
         return lat;
     }
@@ -32,7 +32,7 @@ public class LocationFinder {
             // IP values starting with 127 and 172, which are private IP addresses
             URL ipify = new URL("https://api.ipify.org");
             InputStream is = ipify.openStream();
-            
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String ip = reader.readLine();
 
@@ -48,10 +48,10 @@ public class LocationFinder {
             StringBuilder sb = new StringBuilder();
             for (int c; (c = reader.read()) != -1;)
                 sb.append((char) c);
-            
+
             System.out.println(sb.toString());
             JSONObject json = new JSONObject(sb.toString());
-            
+
             lat = ((BigDecimal) json.get("lat")).doubleValue();
             lon = ((BigDecimal) json.get("lon")).doubleValue();
 
