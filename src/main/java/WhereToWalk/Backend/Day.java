@@ -20,6 +20,7 @@ public class Day
     @Override
     public String toString()
     {
-        return String.format("Date: %s, PrecipitationChance: %d, Temperature: %.2f, Wind Gust: %.2f", mDate, mPrecipitationChance, mTemperature, mWindGust);
+        return String.format("Date: %s, PrecipitationChance: %d, Temperature: %.2f󰔄, Wind Gust: %.2f", mDate, mPrecipitationChance, mTemperature, mWindGust);
+
     }
 }

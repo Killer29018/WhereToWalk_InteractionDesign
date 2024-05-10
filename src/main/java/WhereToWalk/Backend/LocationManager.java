@@ -37,7 +37,7 @@ public class LocationManager
             Location loc = new Location(hills.getJSONObject(i));
             sLocations.put(loc.getName(), loc);
 
-            System.out.println(loc.getDayOffset(-1));
+            System.out.println(loc);
         }
     }
 

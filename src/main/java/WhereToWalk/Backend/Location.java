@@ -64,6 +64,14 @@ public class Location
     @Override
     public String toString()
     {
-        return String.format("Name: %s\nLat Long : %.5f %.5f", getName(), getLat(), getLon());
+        String str;
+        str = String.format("Name: %s\nLat Long : %.5f %.5f", getName(), getLat(), getLon());
+        str = String.format("%s\nDays: \n",str);
+        for (int i = 0; i < getNoOfDays(); i++)
+        {
+            str = String.format("%s\t%s\n", str, getDayOffset(i).toString());
+        }
+        return str;
+
     }
 }

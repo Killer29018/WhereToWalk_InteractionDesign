@@ -2,7 +2,11 @@
     "Hills": [
         {
             "name": "Snowdown",
-            "lat_long": [ 53.4659, 44.3443 ]
+            "lat_long": [ 53.4659, -4.076277 ]
+        },
+        {
+            "name": "Cambridge",
+            "lat_long": [ 52.2, 0.123 ]
         }
     ]
 }
