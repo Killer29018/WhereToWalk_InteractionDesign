@@ -6,6 +6,8 @@ import java.net.*;
 
 import org.json.*;
 
+import javax.xml.stream.Location;
+
 // Finds current (physical) location of user
 public class LocationFinder {
 
@@ -36,7 +38,6 @@ public class LocationFinder {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String ip = reader.readLine();
 
-            System.out.println(ip);
             is.close();
             reader.close();
 
@@ -48,8 +49,7 @@ public class LocationFinder {
             StringBuilder sb = new StringBuilder();
             for (int c; (c = reader.read()) != -1;)
                 sb.append((char) c);
-            
-            System.out.println(sb.toString());
+
             JSONObject json = new JSONObject(sb.toString());
             
             lat = json.getDouble("lat");
@@ -64,4 +64,5 @@ public class LocationFinder {
             return;
         }
     }
+
 }
