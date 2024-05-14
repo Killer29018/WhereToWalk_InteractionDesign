@@ -6,7 +6,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        new WeatherForecast(52, 1);
-        // Window.main(args);
+        //new WeatherForecast(52, 1);
+        Window.main(args);
     }
 }

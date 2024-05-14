@@ -61,7 +61,7 @@ public class Hills {
                 // Hill( HillID, Hill Name, Hill distance from user, Height in metres )
                 // TODO: CONTINUE FROM HERE
                 WeatherForecast weatherForecast = new WeatherForecast(Double.parseDouble(hill[33]),Double.parseDouble(hill[34]));
-                hills.add(new Hill(hill[0], ));
+//                hills.add(new Hill(hill[0], ));
             }
             pointer +=n;
         } catch (IndexOutOfBoundsException e) {
@@ -69,7 +69,7 @@ public class Hills {
         } catch (Exception e) {
             System.out.println("Failure");
         }
-
+        return new ArrayList<>();
 
     }
 
