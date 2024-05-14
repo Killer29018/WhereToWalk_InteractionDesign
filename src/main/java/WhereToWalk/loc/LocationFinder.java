@@ -1,12 +1,9 @@
 package WhereToWalk.loc;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.net.*;
 
 import org.json.*;
-
-import javax.xml.stream.Location;
 
 // Finds current (physical) location of user
 public class LocationFinder {

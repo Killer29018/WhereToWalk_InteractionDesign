@@ -40,6 +40,7 @@ public class WeatherForecast {
         // In case time is exactly aligned to an hour, we don't need to add anything
         if (!time.equals(untruncated))
             time.plusSeconds(3600);
+        System.out.println(time);
         
         if (!weathers.containsKey(time))
             return null;

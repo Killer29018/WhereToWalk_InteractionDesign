@@ -1,10 +1,8 @@
 package WhereToWalk.sorting;
 
-import WhereToWalk.loc.LocationDistance;
-import WhereToWalk.loc.LocationFinder;
-
 import java.util.Comparator;
 
+// Needs rework
 public class Default implements Comparator<String[]> {
     @Override
     public int compare(String[] s1, String[] s2) {
