@@ -17,9 +17,7 @@
     <maven.compiler.target>21</maven.compiler.target>
   </properties>
 
-
   <dependencies>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-base</artifactId>
@@ -64,9 +62,6 @@
       <artifactId>opencsv</artifactId>
       <version>5.9</version>
     </dependency>
-
-
-
   </dependencies>
 
   <build>
@@ -81,11 +76,17 @@
     </resources>
     <plugins>
       <plugin>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-maven-plugin</artifactId>
-        <version>${javafx.maven.plugin.version}</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
         <configuration>
-          <mainClass>Main</mainClass>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>WhereToWalk.Main</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
