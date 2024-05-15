@@ -65,15 +65,6 @@
   </dependencies>
 
   <build>
-    <resources>
-      <resource>
-        <directory>src/data</directory>
-        <includes>
-          <include>**/*.csv</include>
-          <include>**/*.txt</include>
-        </includes>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

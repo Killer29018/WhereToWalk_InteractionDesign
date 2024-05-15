@@ -69,7 +69,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/src/assets/icons/sortbars.png" />
+                        <Image url="@assets/icons/sortbars.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -78,7 +78,7 @@
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/src/assets/icons/filter.png" />
+                        <Image url="@assets/icons/filter.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -110,7 +110,7 @@
                                  <children>
                                     <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/sunshine and clouds.png" />
+                                          <Image url="@assets/icons/sunshine and clouds.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -118,7 +118,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/Placeholder score dial.png" />
+                                          <Image url="@assets/icons/Placeholder score dial.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -160,7 +160,7 @@
                                  <children>
                                     <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/sunshine and clouds.png" />
+                                          <Image url="@assets/icons/sunshine and clouds.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -168,7 +168,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/Placeholder score dial.png" />
+                                          <Image url="@assets/icons/Placeholder score dial.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -210,7 +210,7 @@
                                  <children>
                                     <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/sunshine and clouds.png" />
+                                          <Image url="@assets/icons/sunshine and clouds.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -218,7 +218,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="/src/assets/icons/Placeholder score dial.png" />
+                                          <Image url="@assets/icons/Placeholder score dial.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />

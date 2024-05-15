@@ -1,5 +1,7 @@
 package WhereToWalk;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,11 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 
 import javafx.fxml.FXMLLoader;
 
 public class Window extends Application
 {
+    private final int mWidth = 500;
+    private final float aspect = 9.f/16.f;
+    private final int mHeight = (int)(mWidth * (1.0f / aspect));
+
     public static void main(String[] args)
     {
         launch();
@@ -20,11 +27,15 @@ public class Window extends Application
     @Override
     public void start(Stage primaryStage) throws java.io.IOException
     {
+        // FXMLLoader loader = new FXMLLoader();
+        // loader.setLocation(new URL("file://app_test.fxml"));
+        // AnchorPane root = loader.load();
 
-        AnchorPane root = FXMLLoader.load(getClass().getResource("/Users/robinblake/Documents/Cambridge/OOP/WhereToWalk_InteractionDesign/app_test.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("app_test.fxml"));
 
-
-        primaryStage.setScene(new Scene(root, 300, 250));
+        Scene scene = new Scene(root, mWidth, mHeight);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
