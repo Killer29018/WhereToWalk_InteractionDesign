@@ -15,7 +15,7 @@ public class Hills {
             InputStream is = new FileInputStream("../hills.json");
             JSONObject tmp = JsonReader.readJsonFromInputStream(is);
             JSONArray arr = tmp.getJSONArray("hills");
-            
+
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 double lat = obj.getDouble("lat");
