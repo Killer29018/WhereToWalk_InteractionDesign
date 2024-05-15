@@ -1,6 +1,7 @@
 package WhereToWalk.weather;
 
 import WhereToWalk.JsonReader;
+
 import java.net.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +23,7 @@ public class WeatherForecast {
 
     // This follows ISO8601, i.e. YYYY-MM-DDTHH:MM
     // where T is the letter 'T'
-    private Instant parseTime(String str) {     
+    private Instant parseTime(String str) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(str).toInstant();
         } catch (ParseException ex) {
@@ -36,17 +37,17 @@ public class WeatherForecast {
     public Weather getWeatherAt(Instant time) {
         Instant untruncated = time;
         time.truncatedTo(ChronoUnit.HOURS);
-        
+
         // In case time is exactly aligned to an hour, we don't need to add anything
         if (!time.equals(untruncated))
             time.plusSeconds(3600);
-        
+
         if (!weathers.containsKey(time))
             return null;
-        
+
         return weathers.get(time);
     }
-    
+
     public WeatherForecast(double lat, double lon) {
         weathers = new HashMap<>();
 
@@ -54,8 +55,8 @@ public class WeatherForecast {
             // Build the URL for Web API request
             // Documentation of OpenMeteo is at https://open-meteo.com/en/docs
             StringBuilder sb = new StringBuilder(String.format(
-                "https://api.open-meteo.com/v1/forecast?latitude=%.4f&longitude=%.4f&forecast_hours=%d&hourly=",
-            lat, lon, 24 * FORECAST_FURTHEST));
+                        "https://api.open-meteo.com/v1/forecast?latitude=%.4f&longitude=%.4f&forecast_hours=%d&hourly=",
+                        lat, lon, 24 * FORECAST_FURTHEST));
 
             for (String s : Weather.metrics) {
                 sb.append(s);
@@ -66,8 +67,8 @@ public class WeatherForecast {
 
             URL url = new URL(sb.toString());
             InputStream is = url.openStream();
-            
-            /** 
+
+            /**
              * Json format:
              * {
              *  "hourly": {
@@ -76,7 +77,7 @@ public class WeatherForecast {
              *      <!-- other metrics -->
              *  }
              * }
-             * */ 
+             * */
             raw_data = JsonReader.readJsonFromInputStream(is);
             JSONObject hourly = raw_data.getJSONObject("hourly");
             JSONArray time = hourly.getJSONArray("time");
@@ -85,7 +86,7 @@ public class WeatherForecast {
                 HashMap<String, Double> map = new HashMap<>();
                 for (String s : Weather.metrics)
                     map.put(s, hourly.getJSONArray(s).getDouble(i));
-                
+
                 Instant instant = parseTime(time.getString(i));
                 weathers.put(instant, new Weather(map));
             }
