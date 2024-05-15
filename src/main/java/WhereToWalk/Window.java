@@ -31,7 +31,7 @@ public class Window extends Application
         // loader.setLocation(new URL("file://app_test.fxml"));
         // AnchorPane root = loader.load();
 
-        Parent root= FXMLLoader.load(getClass().getResource("app_test.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
 
         Scene scene = new Scene(root, mWidth, mHeight);
         primaryStage.setScene(scene);
