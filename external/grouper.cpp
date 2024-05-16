@@ -15,8 +15,7 @@ struct hill {
 };
 
 // In km
-double distance(hill a, hill b)
-{
+double distance(hill a, hill b) {
     constexpr double R = 6371;
 
     double latDistance = M_PI / 180 * (a.lat - b.lat);
@@ -29,8 +28,7 @@ double distance(hill a, hill b)
     return R * c;
 }
 
-int main()
-{
+int main() {
     // The json structure is pretty much fixed.
     std::ifstream ifs("../src/main/resources/WhereToWalk/hills.json");
     std::ofstream ofs("../src/main/resources/WhereToWalk/hillgroups.txt");
@@ -44,8 +42,7 @@ int main()
 
     int id = 0;
 
-    while (getline(ifs, str) && str != "\t]")
-    {
+    while (getline(ifs, str) && str != "\t]") {
         getline(ifs, str);
         // \t\t"name": "..."
         std::string name = str.substr(10);
@@ -61,13 +58,10 @@ int main()
     }
 
     std::vector<std::vector<hill>> groups;
-    for (auto h : hills)
-    {
+    for (auto h : hills) {
         bool grouped = false;
-        for (auto& vec : groups)
-        {
-            if (distance(h, vec[0]) < 10)
-            {
+        for (auto& vec : groups) {
+            if (distance(h, vec[0]) < 100) {
                 grouped = true;
                 vec.push_back(h);
             }
@@ -76,12 +70,9 @@ int main()
     }
 
     ofs << groups.size() << std::endl;
-    for (auto vec : groups)
-    {
+    for (auto vec : groups) {
         for (auto h : vec)
-        {
             ofs << h.id << ", ";
-        }
         ofs << "\n";
     }
     return 0;

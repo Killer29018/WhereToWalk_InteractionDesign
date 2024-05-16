@@ -46,5 +46,5 @@ def gengroup():
         };
     fres = open("../src/main/resources/WhereToWalk/groupcoords.json", "w");
     json.dump(groups, fres, indent=4);
-    
+
 gengroup();

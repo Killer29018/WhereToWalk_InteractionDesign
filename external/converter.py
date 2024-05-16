@@ -4,9 +4,9 @@ import pandas as pd;
 def process(name, lat, lon):
     return f'\t{{\n\t\t"name": "{name}",\n\t\t"lat": {lat},\n\t\t"lon": {lon}\n\t}},\n';
 
-data = pd.read_csv("DoBIH_v18.csv");
-file = open("DoBIH_v18.csv", "r");
-output = open("hills.json", "w");
+
+data = pd.read_csv("../src/main/resources/WhereToWalk/DoBIH_v18.csv");
+output = open("../src/main/resources/WhereToWalk/hills.json", "w");
 output.write("""{
 \t"hills": [
 """);

@@ -1,12 +1,8 @@
 package WhereToWalk;
 
-import WhereToWalk.weather.WeatherForecast;
-
 public class Main
 {
-    public static void main(String[] args)
-    {
-        new WeatherForecast(52, 1);
+    public static void main(String[] args) {
         Window.main(args);
     }
 }

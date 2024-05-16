@@ -24,6 +24,7 @@ public class LocationFinder {
 
     // Finds current location by looking at public IP,
     // and find the location where this IP corresponds to
+    @SuppressWarnings("deprecation")
     public LocationFinder() {
         try {
             // This Web API can be used to get your public IP
@@ -55,7 +56,6 @@ public class LocationFinder {
             is.close();
             reader.close();
         } catch (Exception ex) {
-            // TODO: more elegant way of handling exceptions
             System.out.println("Failed!");
             System.out.println(ex.getClass().getName());
             return;
