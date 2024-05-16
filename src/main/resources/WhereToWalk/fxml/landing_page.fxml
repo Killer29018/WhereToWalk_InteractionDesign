@@ -54,7 +54,7 @@
          <children>
             <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
                <children>
-                  <TextField id="SearchBarField" layoutX="24.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light;">
+                  <TextField id="SearchBarField" layoutX="24.0" layoutY="5.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light; -fx-region-background: transparent;">
                      <font>
                         <Font name="Avenir Light" size="36.0" />
                      </font>
