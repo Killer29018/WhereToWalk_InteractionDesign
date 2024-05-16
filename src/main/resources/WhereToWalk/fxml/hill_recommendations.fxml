@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="240.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0">
+      <ImageView fitHeight="800.0" fitWidth="480.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0">
               <image>
-                 <Image url="@../Documents/Cambridge/OOP/WhereToWalk_InteractionDesign/src/main/resources/images/test.jpg" />
+                 <Image url="@../assets/images/test.jpg" />
               </image>
       </ImageView>
-      <Pane layoutX="20.0" layoutY="14.0" prefHeight="368.0" prefWidth="200.0" style="-fx-background-color: #d9dcdf99; -fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 20;">
+      <Pane layoutX="20.0" layoutY="14.0" prefHeight="773.0" prefWidth="440.0" style="-fx-background-color: #d9dcdf99; -fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 20;">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="115.0" text="Mountain name">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="277.0" text="Recommendations">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="140.0" layoutY="17.0" prefHeight="17.0" prefWidth="37.0" text="date" />
-            <Label layoutX="14.0" layoutY="37.0" text="Region" />
-            <Label layoutX="140.0" layoutY="37.0" text="height">
+            <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font size="24.0" />
                </font>
-            </Label>
+            </Text>
          </children></Pane>
+      <Button layoutX="-9.0" layoutY="-12.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="18.0" style="-fx-background-color: #ffffff00;" text="x">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
