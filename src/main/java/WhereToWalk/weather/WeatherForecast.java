@@ -22,6 +22,8 @@ public class WeatherForecast {
     // Here we employ java.time.Instant from JDK 1.8.
     private HashMap<Instant, Weather> weathers;
 
+    private double[] score = new double[7];
+
     // This follows ISO8601, i.e. YYYY-MM-DDTHH:MM
     // where T is the letter 'T'
     private Instant parseTime(String str) {
@@ -37,11 +39,11 @@ public class WeatherForecast {
     // Returns null if the time is too far from current.
     public Weather getWeatherAt(Instant time) {
         Instant untruncated = time;
-        time.truncatedTo(ChronoUnit.HOURS);
+        time = time.truncatedTo(ChronoUnit.HOURS);
 
         // In case time is exactly aligned to an hour, we don't need to add anything
         if (!time.equals(untruncated))
-            time.plusSeconds(3600);
+            time = time.plusSeconds(3600);
         System.out.println(time);
 
         if (!weathers.containsKey(time))
@@ -70,6 +72,8 @@ public class WeatherForecast {
             URL url = new URL(sb.toString());
             InputStream is = url.openStream();
 
+
+
             /**
              * Json format:
              * {
@@ -92,6 +96,32 @@ public class WeatherForecast {
                 Instant instant = parseTime(time.getString(i));
                 weathers.put(instant, new Weather(map));
             }
+
+            Instant now = Instant.now();
+            Instant nextday = now.truncatedTo(ChronoUnit.DAYS);
+
+            if (!now.equals(nextday)) {
+                nextday = nextday.plusSeconds(86400);
+            }
+            Duration duration = Duration.between(nextday, now);
+//            for
+            for (int i=0; i< duration.toHours();i++) {
+                Weather weather = getWeatherAt(now.plusSeconds(i*3600));
+                double cc = weather.getCloudCoverage()/100.;
+                double p = weather.getPrecipitation();
+                double t = weather.getTemperature();
+                double ws = weather.getWindSpeed();
+                double v = 0.2*Math.exp(-0.01*(Math.pow((t-17.5),2))) +
+                           0.5*Math.exp(-0.1*p) +
+                           0.2*Math.exp(-0.05*ws) +
+                           0.1*Math.exp(-5*cc);
+            }
+//            Duration dur = Duration.between(nextday.plusSeconds(),nextday);
+
+
+
+
+
         } catch (Exception ex) {
             System.out.println(ex.getClass().getName());
         }
@@ -104,7 +134,10 @@ public class WeatherForecast {
         WeatherForecast weatherForecast = new WeatherForecast(locationFinder.getLatitude(), locationFinder.getLongitude());
         Date date = new Date();
         Instant time =  Instant.now();
+
+//        weatherForecast.parseTime();
         Weather weather = weatherForecast.getWeatherAt(time);
+
         System.out.println(weather.getCloudCoverage());
     }
 }
