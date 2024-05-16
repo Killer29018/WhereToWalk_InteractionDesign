@@ -27,7 +27,6 @@ public class JsonReader
             String jsonText = sb.toString();
             JSONObject json = new JSONObject(jsonText);
 
-            System.out.println(json.toString());
             stream.close();
             return json;
 
