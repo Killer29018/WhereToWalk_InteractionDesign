@@ -55,7 +55,6 @@ public class LocationFinder {
             is.close();
             reader.close();
         } catch (Exception ex) {
-            // TODO: more elegant way of handling exceptions
             System.out.println("Failed!");
             System.out.println(ex.getClass().getName());
             return;
