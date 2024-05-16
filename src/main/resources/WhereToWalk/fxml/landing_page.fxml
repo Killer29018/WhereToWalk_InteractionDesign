@@ -68,7 +68,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Interaction design/icons/sortbars.png" />
+                        <Image url="@../assets/icons/sortbars.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -77,7 +77,7 @@
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Interaction design/icons/filter.png" />
+                        <Image url="@../assets/icons/filter.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -109,7 +109,7 @@
                                  <children>
                                     <ImageView id="WeatherIcon" fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/sunshine%20and%20clouds.png" />
+                                          <Image url="@../assets/icons/sunshine%20and%20clouds.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
