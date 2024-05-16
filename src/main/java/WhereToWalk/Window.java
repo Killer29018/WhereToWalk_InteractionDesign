@@ -15,9 +15,9 @@ import javafx.fxml.FXMLLoader;
 
 public class Window extends Application
 {
-    private final int mWidth = 500;
-    private final float aspect = 9.f/16.f;
-    private final int mHeight = (int)(mWidth * (1.0f / aspect));
+    private final int mWidth = 240;
+    // private final float aspect = 9.f/20.f;
+    private final int mHeight = 400;
 
     public static void main(String[] args)
     {
@@ -27,10 +27,6 @@ public class Window extends Application
     @Override
     public void start(Stage primaryStage) throws java.io.IOException
     {
-        // FXMLLoader loader = new FXMLLoader();
-        // loader.setLocation(new URL("file://app_test.fxml"));
-        // AnchorPane root = loader.load();
-
         Parent root= FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
 
         Scene scene = new Scene(root, mWidth, mHeight);
@@ -38,32 +34,4 @@ public class Window extends Application
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
-        // HELLO I PUSHED!
-        // String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high";
-        // try
-        // {
-        //     InputStream is = new URL(url).openStream();
-        //     try {
-        //         BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-        //         StringBuilder sb = new StringBuilder();
-        //         int cp;
-        //         while ((cp = rd.read()) != -1)
-        //         {
-        //             sb.append((char)cp);
-        //         }
-        //         String jsonText = sb.toString();
-        //         // String jsonText = readAll(rd);
-        //         JSONObject json = new JSONObject(jsonText);
-        //
-        //         System.out.println(json.toString());
-        //     } finally {
-        //         is.close();
-        //     }
-        // }
-        // catch (java.io.IOException e)
-        // {
-        //     System.out.println("IO Exception");
-        // }
-    }
-// }
+}
