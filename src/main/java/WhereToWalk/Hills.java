@@ -2,7 +2,6 @@ package WhereToWalk;
 
 import java.io.*;
 import java.util.*;
-
 import org.json.*;
 
 
@@ -29,5 +28,8 @@ public class Hills {
             throw new ResourceMissingException();
         }
     }
+
+
+
 
 }

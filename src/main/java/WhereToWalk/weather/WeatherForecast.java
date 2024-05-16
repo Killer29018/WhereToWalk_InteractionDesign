@@ -10,6 +10,7 @@ import java.time.*;
 import java.time.temporal.*;
 import java.util.*;
 
+import WhereToWalk.loc.LocationFinder;
 import org.json.*;
 
 public class WeatherForecast {
@@ -94,5 +95,16 @@ public class WeatherForecast {
         } catch (Exception ex) {
             System.out.println(ex.getClass().getName());
         }
+    }
+
+    public static void main(String[] args) {
+        LocationFinder locationFinder = new LocationFinder();
+        System.out.println(locationFinder.getLongitude());
+        System.out.println(locationFinder.getLatitude());
+        WeatherForecast weatherForecast = new WeatherForecast(locationFinder.getLatitude(), locationFinder.getLongitude());
+        Date date = new Date();
+        Instant time =  Instant.now();
+        Weather weather = weatherForecast.getWeatherAt(time);
+        System.out.println(weather.getCloudCoverage());
     }
 }
