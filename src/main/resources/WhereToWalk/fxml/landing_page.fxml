@@ -32,20 +32,29 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="43.0" layoutY="41.0" prefHeight="64.0" prefWidth="394.0" spacing="10.0">
          <children>
-            <Pane prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
+            <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
                <children>
-                  <TextField layoutX="24.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light;">
+                  <TextField id="SearchBarField" layoutX="24.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light;">
                      <font>
                         <Font name="Avenir Light" size="36.0" />
                      </font>
@@ -55,7 +64,7 @@
                   <InnerShadow />
                </effect>
             </Pane>
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="85.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
+            <Button id="SortButton" mnemonicParsing="false" prefHeight="64.0" prefWidth="85.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,7 +73,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button minWidth="39.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="80.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
+            <Button id="FilterButton" minWidth="39.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="80.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,30 +84,30 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutX="-3.0" layoutY="133.0" pannable="true" prefHeight="628.0" prefWidth="484.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #5B9BD5; -fx-border-color: #5B9BD5;" vbarPolicy="NEVER">
+      <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-3.0" layoutY="133.0" pannable="true" prefHeight="628.0" prefWidth="484.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #5B9BD5; -fx-border-color: #5B9BD5;" vbarPolicy="NEVER">
          <content>
             <VBox alignment="TOP_CENTER" prefHeight="1003.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: #5B9BD5;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-border-width: 2;">
+                  <Button id="HillButton" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-border-width: 2;">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <graphic>
                         <VBox prefHeight="221.0" prefWidth="304.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hill Name" wrappingWidth="286.68412017822266">
+                              <Text id="HillName" strokeType="OUTSIDE" strokeWidth="0.0" text="Hill Name" wrappingWidth="286.68412017822266">
                                  <font>
                                     <Font name="Avenir Heavy" size="57.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="298.579833984375">
+                              <Text id="RegionName" strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="298.579833984375">
                                  <font>
                                     <Font name="Avenir Light" size="33.0" />
                                  </font>
                               </Text>
                               <HBox prefHeight="115.0" prefWidth="225.0">
                                  <children>
-                                    <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="WeatherIcon" fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/sunshine%20and%20clouds.png" />
                                        </image>
@@ -106,114 +115,11 @@
                                           <Rectangle2D />
                                        </viewport>
                                     </ImageView>
-                                    <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/Placeholder%20score%20dial.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="30.0" right="30.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </graphic>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                     <padding>
-                        <Insets right="10.0" top="10.0" />
-                     </padding>
-                  </Button>
-                  <Button layoutX="53.0" layoutY="10.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
-                     <graphic>
-                        <VBox prefHeight="221.0" prefWidth="304.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hill name" wrappingWidth="286.68412017822266">
-                                 <font>
-                                    <Font name="Avenir Heavy" size="57.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="301.1198425292969">
-                                 <font>
-                                    <Font name="Avenir Light" size="33.0" />
-                                 </font>
-                              </Text>
-                              <HBox prefHeight="115.0" prefWidth="225.0">
-                                 <children>
-                                    <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/sunshine%20and%20clouds.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
-                                    <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/Placeholder%20score%20dial.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="30.0" right="30.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </graphic>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                     <padding>
-                        <Insets right="10.0" top="10.0" />
-                     </padding>
-                  </Button>
-                  <Button layoutX="53.0" layoutY="360.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
-                     <graphic>
-                        <VBox prefHeight="221.0" prefWidth="304.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yr Wyddfa" wrappingWidth="286.68412017822266">
-                                 <font>
-                                    <Font name="Avenir Heavy" size="57.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Snowdonia" wrappingWidth="162.69000244140625">
-                                 <font>
-                                    <Font name="Avenir Light" size="33.0" />
-                                 </font>
-                              </Text>
-                              <HBox prefHeight="115.0" prefWidth="225.0">
-                                 <children>
-                                    <ImageView fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/sunshine%20and%20clouds.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
-                                    <ImageView fitHeight="156.0" fitWidth="166.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/Placeholder%20score%20dial.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
+                                    <Text id="HillScore" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" textAlignment="CENTER" wrappingWidth="142.21630859375">
+                                       <font>
+                                          <Font size="56.0" />
+                                       </font>
+                                    </Text>
                                  </children>
                               </HBox>
                            </children>
