@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import javafx.geometry.*;
 
 import javafx.event.*;
 import javafx.scene.input.*;
@@ -23,9 +24,13 @@ public class Window extends Application
     // private final float aspect = 9.f/20.f;
     private final int mHeight = 800;
 
-    Parent landingPage;
-    Parent hillRecommendations;
-    Parent hillPage;
+    Parent landingPageParent;
+    Parent hillRecommendationsParent;
+    Parent hillPageParent;
+
+    Scene landingPage;
+    Scene hillRecommendations;
+    Scene hillPage;
 
     Scene mainScene;
 
@@ -37,18 +42,11 @@ public class Window extends Application
     @Override
     public void start(Stage primaryStage) throws java.io.IOException
     {
-        landingPage = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
-        hillRecommendations = FXMLLoader.load(getClass().getResource("fxml/hill_recommendations.fxml"));
-        hillPage = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
+        // landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+        hillRecommendationsParent = FXMLLoader.load(getClass().getResource("fxml/hill_recommendations.fxml"));
+        hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
 
-        // mainScene = new Scene(landingPage, mWidth, mHeight);
         loadLandingPage(primaryStage);
-        // primaryStage.setScene(mainScene);
-        // primaryStage.show();
-
-        // setupHillPage(primaryStage);
-        // setupHillRecommendations(primaryStage);
-        // setupLandingPage(primaryStage);
 
         primaryStage.setResizable(false);
 
@@ -67,33 +65,64 @@ public class Window extends Application
 
     public void loadLandingPage(Stage primaryStage) throws java.io.IOException
     {
-        primaryStage.setScene(new Scene(landingPage));
+        landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+
+        landingPage = new Scene(landingPageParent);
+        primaryStage.setScene(landingPage);
         primaryStage.show();
 
-        // ScrollPane = (ScrollPane)FXMLLoader.
-        ScrollPane hillScroller = (ScrollPane)landingPage.lookup("#HillButtonScroller");
-        Button hillButton = (Button)hillScroller.lookup("#HillButton");
 
-        hillButton.setOnAction(new EventHandler<ActionEvent>() {
+        // ScrollPane = (ScrollPane)FXMLLoader.
+        ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
+
+        VBox buttons = (VBox)hillScroller.lookup("#HillButtonScrollerVBOX");
+        buttons.getChildren().clear();
+        for (int i = 0; i < 4; i++)
+        {
+            landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+            Button hillButton = (Button)landingPageParent.lookup("#HillButton");
+            hillButton.setLayoutX(0);
+            hillButton.setLayoutY(0);
+            hillButton.setId("AutoButton" + i);
+
+            hillButton.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event)
+                {
+                    try
+                    {
+                        loadHillPage(primaryStage);
+                    } catch(Exception e) {}
+                }
+            });
+
+            buttons.getChildren().add(hillButton);
+        }
+
+        hillScroller.setContent(buttons);
+    }
+
+    public void loaddHillRecommendations(Stage primaryStage)
+    {
+    }
+
+    public void loadHillPage(Stage primaryStage) throws java.io.IOException
+    {
+        hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
+        hillPage = new Scene(hillPageParent);
+
+        primaryStage.setScene(hillPage);
+        primaryStage.show();
+
+        Button closeButton = (Button)hillPageParent.lookup("#CloseButton");
+
+        closeButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event)
             {
-                primaryStage.setScene(new Scene(hillPage, mWidth, mHeight));
+                try
+                {
+                    loadLandingPage(primaryStage);
+                } catch (Exception e) {}
             }
         });
-        // Button filterBtn = (Button)landingPage.lookup("#Filter");
-        // filterBtn.setOnAction(new EventHandler<ActionEvent>() {
-            // public void handle(ActionEvent event)
-            // {
-            //     System.out.print("Filter");
-            // }
-        // });
-    }
-
-    public void setupHillRecommendations(Stage primaryStage) throws java.io.IOException
-    {
-    }
-
-    public void setupHillPage(Stage primaryStage) throws java.io.IOException
-    {
     }
 }
