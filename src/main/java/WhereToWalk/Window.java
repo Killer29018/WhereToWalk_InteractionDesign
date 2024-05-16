@@ -15,9 +15,9 @@ import javafx.fxml.FXMLLoader;
 
 public class Window extends Application
 {
-    private final int mWidth = 240;
+    private final int mWidth = 480;
     // private final float aspect = 9.f/20.f;
-    private final int mHeight = 400;
+    private final int mHeight = 800;
 
     public static void main(String[] args)
     {
