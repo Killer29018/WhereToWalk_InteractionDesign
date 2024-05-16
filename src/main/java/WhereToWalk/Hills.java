@@ -47,7 +47,6 @@ public class Hills {
                 String name = obj.getString("name");
 
 
-//                hills.add(new Hill(name, lat, lon, score, ));
             }
 
         } catch (Exception e) {

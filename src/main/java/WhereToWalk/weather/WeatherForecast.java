@@ -44,7 +44,6 @@ public class WeatherForecast {
         // In case time is exactly aligned to an hour, we don't need to add anything
         if (!time.equals(untruncated))
             time = time.plusSeconds(3600);
-        System.out.println(time);
 
         if (!weathers.containsKey(time))
             return null;
@@ -125,9 +124,9 @@ public class WeatherForecast {
                 if (i==0) {
                     Instant nextday = cur.truncatedTo(ChronoUnit.DAYS);
                     if (!cur.equals(nextday)) {
-                        nextday = nextday.plusSeconds(86400);
+                        nextday = nextday.plusSeconds(3600*24);
                     }
-                    Duration duration = Duration.between(nextday, cur);
+                    Duration duration = Duration.between(cur, nextday);
                     score[0] = calcScore(cur, duration.toHours());
                     cur = nextday;
                 } else {
@@ -145,6 +144,6 @@ public class WeatherForecast {
         LocationFinder locationFinder = new LocationFinder();
         WeatherForecast weatherForecast = new WeatherForecast(locationFinder.getLatitude(), locationFinder.getLongitude());
 
-        System.out.println(weatherForecast.getScore(2));
+        System.out.println(weatherForecast.getScore(0));
     }
 }
