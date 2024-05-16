@@ -9,22 +9,22 @@ import org.json.*;
 public class LocationFinder {
 
     // latitude
-    private double lat;
+    private static double lat;
 
     // longitude
-    private double lon;
+    private static double lon;
     
-    public double getLatitude() {
+    public static double getLatitude() {
         return lat;
     }
 
-    public double getLongitude() {
+    public static double getLongitude() {
         return lon;
     }
 
     // Finds current location by looking at public IP,
     // and find the location where this IP corresponds to
-    public LocationFinder() {
+    public static void LocationFinder() {
         try {
             // This Web API can be used to get your public IP
             // I didn't use java.net.InetAddress APIs because they might only return

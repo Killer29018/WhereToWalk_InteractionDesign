@@ -3,6 +3,7 @@ package WhereToWalk;
 import java.io.*;
 import java.util.*;
 
+import WhereToWalk.loc.LocationFinder;
 import WhereToWalk.weather.WeatherForecast;
 import org.json.*;
 
@@ -10,8 +11,10 @@ import org.json.*;
 public class Hills {
     public static class ResourceMissingException extends RuntimeException{};
     private List<Hill> hills = new ArrayList<>();
+    private int pointer;
 
     protected Hills() {
+        pointer = 0;
         Map<Integer, WeatherForecast> groupWeathers = new HashMap<>();
         try {
             InputStream is = new FileInputStream("..groupcoords.json");
@@ -55,7 +58,24 @@ public class Hills {
         }
     }
 
+    protected void sortHills(Comparator<Hill> sorter) {
+        LocationFinder.LocationFinder();
+        this.hills.sort(sorter);
+        pointer = 0;
+    }
 
+    protected List<Hill> getNHills(int n) {
+        List<Hill> hillSubset = new ArrayList<>();
+        for (int i=pointer; i<pointer+n;i++) {
+            hillSubset.add(hills.get(i));
+        }
+        pointer += n;
+        return hillSubset;
+    }
 
-
+    protected List<Hill> getNHillsSorted(int n, Comparator<Hill> sorter) {
+        List<Hill> hills = getNHills(n);
+        hills.sort(sorter);
+        return hills;
+    }
 }

@@ -1,5 +1,7 @@
 package WhereToWalk.loc;
 
+import WhereToWalk.Hill;
+
 import java.util.List;
 
 public class LocationDistance {
@@ -23,19 +25,7 @@ public class LocationDistance {
         return Math.sqrt(distance);
     }
 
-    public static void distanceFromUser(List<String[]> hills) {
-        LocationFinder locationFinder = new LocationFinder();
-        double lat = locationFinder.getLatitude();
-        double lon = locationFinder.getLongitude();
-        for (String[] hill : hills) {
-            hill[2] = String.valueOf(distance(
-                    lat,
-                    Double.parseDouble(hill[33]),
-                    lon,
-                    Double.parseDouble(hill[34]),
-                    0,
-                    0
-            ));
-        }
+    public static double distanceFromUser(Hill hill) {
+        return distance(LocationFinder.getLatitude(), hill.getLat(), LocationFinder.getLongitude(), hill.getLon(), 0, 0);
     }
 }
