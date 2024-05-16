@@ -32,8 +32,8 @@ double distance(hill a, hill b)
 int main()
 {
     // The json structure is pretty much fixed.
-    std::ifstream ifs("../../hills.json");
-    std::ofstream ofs("../../hillgroups.txt");
+    std::ifstream ifs("../src/main/resources/WhereToWalk/hills.json");
+    std::ofstream ofs("../src/main/resources/WhereToWalk/hillgroups.txt");
     std::string str;
     std::vector<hill> hills;
     hills.reserve(21000);
