@@ -52,16 +52,16 @@ public class Window extends Application
 
         primaryStage.setResizable(false);
 
-        mainScene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event)
-            {
-                if (event.getCode() == KeyCode.ESCAPE)
-                {
-                    primaryStage.close();
-                }
-                event.consume();
-            }
-        });
+        // mainScene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+        //     public void handle(KeyEvent event)
+        //     {
+        //         if (event.getCode() == KeyCode.ESCAPE)
+        //         {
+        //             primaryStage.close();
+        //         }
+        //         event.consume();
+        //     }
+        // });
 
     }
 
