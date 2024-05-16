@@ -1,9 +1,13 @@
 package WhereToWalk;
 
+import WhereToWalk.weather.*;
+
 public class Hill {
     private String name;
     private double lat;
     private double lon;
+
+    private Weather weather;
 
     protected Hill(String name, double lat, double lon) {
         this.name = name;
@@ -23,4 +27,9 @@ public class Hill {
     public double getLon() {
         return lon;
     }
+    
+    public Weather getWeather() {
+        return weather;
+    }
+
 }
