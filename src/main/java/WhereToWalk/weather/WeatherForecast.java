@@ -52,6 +52,29 @@ public class WeatherForecast {
         return weathers.get(time);
     }
 
+    protected double getScore(int n) throws ArrayIndexOutOfBoundsException {
+        return score[n];
+    }
+
+    private double calcScore(Instant time, long duration) {
+        double res = 0;
+        for (int i=0; i<duration;i++) { // current day score
+            Weather weather = getWeatherAt(time.plusSeconds(i*3600));
+            double cc = weather.getCloudCoverage()/100.;
+            double p = weather.getPrecipitation();
+            double t = weather.getTemperature();
+            double ws = weather.getWindSpeed();
+            res += (0.2*Math.exp(-0.01*(Math.pow((t-17.5),2))) +
+                    0.5*Math.exp(-0.1*p) +
+                    0.2*Math.exp(-0.05*ws) +
+                    0.1*Math.exp(-5*cc));
+        }
+        return res/duration;
+    }
+    private double calcScore(Instant time) {
+        return calcScore(time, 24);
+    }
+
     public WeatherForecast(double lat, double lon) {
         weathers = new HashMap<>();
 
@@ -97,30 +120,21 @@ public class WeatherForecast {
                 weathers.put(instant, new Weather(map));
             }
 
-            Instant now = Instant.now();
-            Instant nextday = now.truncatedTo(ChronoUnit.DAYS);
-
-            if (!now.equals(nextday)) {
-                nextday = nextday.plusSeconds(86400);
+            Instant cur = Instant.now();
+            for (int i=0;i<7;i++) {
+                if (i==0) {
+                    Instant nextday = cur.truncatedTo(ChronoUnit.DAYS);
+                    if (!cur.equals(nextday)) {
+                        nextday = nextday.plusSeconds(86400);
+                    }
+                    Duration duration = Duration.between(nextday, cur);
+                    score[0] = calcScore(cur, duration.toHours());
+                    cur = nextday;
+                } else {
+                    score[i] = calcScore(cur);
+                    cur = cur.plusSeconds(86400);
+                }
             }
-            Duration duration = Duration.between(nextday, now);
-//            for
-            for (int i=0; i< duration.toHours();i++) {
-                Weather weather = getWeatherAt(now.plusSeconds(i*3600));
-                double cc = weather.getCloudCoverage()/100.;
-                double p = weather.getPrecipitation();
-                double t = weather.getTemperature();
-                double ws = weather.getWindSpeed();
-                double v = 0.2*Math.exp(-0.01*(Math.pow((t-17.5),2))) +
-                           0.5*Math.exp(-0.1*p) +
-                           0.2*Math.exp(-0.05*ws) +
-                           0.1*Math.exp(-5*cc);
-            }
-//            Duration dur = Duration.between(nextday.plusSeconds(),nextday);
-
-
-
-
 
         } catch (Exception ex) {
             System.out.println(ex.getClass().getName());
@@ -129,15 +143,8 @@ public class WeatherForecast {
 
     public static void main(String[] args) {
         LocationFinder locationFinder = new LocationFinder();
-        System.out.println(locationFinder.getLongitude());
-        System.out.println(locationFinder.getLatitude());
         WeatherForecast weatherForecast = new WeatherForecast(locationFinder.getLatitude(), locationFinder.getLongitude());
-        Date date = new Date();
-        Instant time =  Instant.now();
 
-//        weatherForecast.parseTime();
-        Weather weather = weatherForecast.getWeatherAt(time);
-
-        System.out.println(weather.getCloudCoverage());
+        System.out.println(weatherForecast.getScore(2));
     }
 }
