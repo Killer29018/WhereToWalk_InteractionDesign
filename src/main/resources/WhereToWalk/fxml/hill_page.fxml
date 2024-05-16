@@ -112,5 +112,6 @@
             </Label>
          </children>
       </Pane>
+      <Button layoutY="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #ffffff00;" text="x" />
    </children>
 </AnchorPane>
