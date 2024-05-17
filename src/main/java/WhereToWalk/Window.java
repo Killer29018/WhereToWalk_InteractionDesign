@@ -12,10 +12,17 @@ import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.text.*;
 import javafx.scene.layout.*;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.stage.*;
+import javafx.scene.chart.PieChart;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.geometry.*;
+import javafx.collections.*;
 
+import javafx.event.*;
 import javafx.scene.input.*;
 
 import javafx.fxml.FXMLLoader;
@@ -189,6 +196,11 @@ public class Window extends Application
         Label windSpeed = (Label)hillPageParent.lookup("#Windspeed");
         windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
 
+        int score = 23;
+
+        setPieChart(hillPageParent, score);
+        setScoreText(hillPageParent, score);
+
         Button closeButton = (Button)hillPageParent.lookup("#CloseButton");
 
         closeButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -200,5 +212,25 @@ public class Window extends Application
                 } catch (Exception e) {}
             }
         });
+    }
+
+    public void setPieChart(Parent pageParent, int score) {
+        PieChart scoreChart = (PieChart) pageParent.lookup("#MainScoreDial");
+        scoreChart.setLayoutX(-20);
+        scoreChart.setLayoutY(-5);
+        scoreChart.setStartAngle(90);
+
+
+        ObservableList<PieChart.Data> scoreData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Score", score),
+                        new PieChart.Data("Excess", 100 - score));
+        scoreChart.setData(scoreData);
+    }
+
+    public void setScoreText(Parent pageParent, int score) {
+        Label scoreText = (Label) pageParent.lookup("#MainScoreNum");
+
+        scoreText.setText(Integer.toString(score));
     }
 }
