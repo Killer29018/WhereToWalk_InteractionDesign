@@ -20,20 +20,20 @@
       </ImageView>
       <Pane layoutX="20.0" layoutY="16.0" prefHeight="146.0" prefWidth="440.0" style="-fx-background-color: #d9dcdf99; -fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 20;">
          <children>
-            <Label id="MountainName" layoutX="14.0" layoutY="14.0" prefHeight="78.0" prefWidth="274.0" text="Mountain name">
+            <Label id="MountainName" layoutX="14.0" layoutY="14.0" prefHeight="78.0" prefWidth="264.0" text="Mountain name">
                <font>
                   <Font name="System Bold" size="29.0" />
                </font>
             </Label>
-            <Label id="Date" alignment="CENTER_RIGHT" layoutX="305.0" layoutY="14.0" prefHeight="78.0" prefWidth="120.0" text="date">
+            <Label id="Date" alignment="CENTER_RIGHT" layoutX="277.0" layoutY="14.0" prefHeight="78.0" prefWidth="148.0" text="date" textAlignment="RIGHT">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label id="Region" layoutX="14.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="Region">
+            <Label id="Region" layoutX="14.0" layoutY="85.0" prefHeight="47.0" prefWidth="244.0" text="Region">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label id="Height" alignment="CENTER_RIGHT" layoutX="303.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="height">
+            <Label id="Height" alignment="CENTER_RIGHT" layoutX="292.0" layoutY="85.0" prefHeight="47.0" prefWidth="134.0" text="height" textAlignment="RIGHT">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -54,7 +54,7 @@
       <Pane layoutX="120.0" layoutY="183.0" prefHeight="120.0" prefWidth="120.0">
          <children>
             <Circle fill="#d9dcdeab" layoutX="60.0" layoutY="60.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label id="Temp" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="33.0" prefHeight="23.0" prefWidth="37.0" text="0" textAlignment="CENTER">
+            <Label id="Temp" alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="33.0" prefHeight="44.0" prefWidth="127.0" text="00" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -73,7 +73,7 @@
       <Pane layoutX="260.0" layoutY="183.0" prefHeight="120.0" prefWidth="120.0">
          <children>
             <Circle fill="#d9dcdeab" layoutX="60.0" layoutY="60.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label id="CloudCover" alignment="CENTER" layoutX="42.0" layoutY="33.0" prefHeight="23.0" prefWidth="37.0" text="0" textAlignment="CENTER">
+            <Label id="CloudCover" alignment="CENTER" layoutX="-12.0" layoutY="34.0" prefHeight="44.0" prefWidth="137.0" text="00" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -92,7 +92,7 @@
       <Pane layoutX="20.0" layoutY="280.0" prefHeight="120.0" prefWidth="120.0">
          <children>
             <Circle fill="#d9dcdeab" layoutX="65.0" layoutY="65.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label id="Rain" alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="34.0" prefHeight="23.0" prefWidth="22.0" text="0" textAlignment="CENTER">
+            <Label id="Rain" alignment="CENTER" contentDisplay="CENTER" layoutY="38.0" prefHeight="44.0" prefWidth="124.0" text="00" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -111,7 +111,7 @@
       <Pane layoutX="340.0" layoutY="280.0" prefHeight="120.0" prefWidth="120.0">
          <children>
             <Circle fill="#d9dcdeab" layoutX="60.0" layoutY="60.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label id="Windspeed" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="34.0" prefHeight="53.0" prefWidth="27.0" text="0" textAlignment="CENTER">
+            <Label id="Windspeed" alignment="CENTER" contentDisplay="CENTER" layoutX="-6.0" layoutY="34.0" prefHeight="53.0" prefWidth="124.0" text="00" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
