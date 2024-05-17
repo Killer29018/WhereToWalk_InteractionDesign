@@ -154,17 +154,10 @@ public class Window extends Application
     public void loadHillPage(Stage primaryStage, Button btn) throws java.io.IOException
     {
         hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
-        if (!loadedHillPage)
-        {
-            hillPage = new Scene(hillPageParent);
-            loadedHillPage = true;
-        }
+        hillPage = new Scene(hillPageParent);
 
         primaryStage.setScene(hillPage);
         primaryStage.show();
-
-        // System.out.println(btn.getId());
-        // System.out.println(btn.getId().substring(10));
 
         int index = Integer.parseInt(btn.getId().substring(10));
         System.out.println(index);
