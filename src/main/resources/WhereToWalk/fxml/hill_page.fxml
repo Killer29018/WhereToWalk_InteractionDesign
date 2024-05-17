@@ -28,11 +28,11 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label id="Height" layoutX="14.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="Region">
+            <Label id="Region" layoutX="14.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="Region">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="303.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="height">
+            <Label id="Height" alignment="CENTER_RIGHT" layoutX="303.0" layoutY="85.0" prefHeight="47.0" prefWidth="123.0" text="height">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

@@ -1,19 +1,21 @@
 package WhereToWalk;
 
+import WhereToWalk.weather.*;
+
 import java.net.URL;
 import java.io.*;
+import java.util.*;
+import java.time.*;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.event.*;
+import javafx.scene.*;
+import javafx.scene.text.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.stage.*;
 import javafx.geometry.*;
 
-import javafx.event.*;
 import javafx.scene.input.*;
 
 import javafx.fxml.FXMLLoader;
@@ -34,6 +36,14 @@ public class Window extends Application
 
     Scene mainScene;
 
+    Boolean loadedLandingPage = false;
+    Boolean loadedHillRecommendations = false;
+    Boolean loadedHillPage = false;
+
+    List<Hill> hills;
+    Instant currentTime;
+    Boolean loadedHills = false;
+
     public static void main(String[] args)
     {
         launch();
@@ -50,68 +60,134 @@ public class Window extends Application
 
         primaryStage.setResizable(false);
 
-        // mainScene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-        //     public void handle(KeyEvent event)
-        //     {
-        //         if (event.getCode() == KeyCode.ESCAPE)
-        //         {
-        //             primaryStage.close();
-        //         }
-        //         event.consume();
-        //     }
-        // });
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event)
+            {
+                if (event.getCode() == KeyCode.ESCAPE)
+                {
+                    primaryStage.close();
+                }
+                event.consume();
+            }
+        });
 
     }
 
     public void loadLandingPage(Stage primaryStage) throws java.io.IOException
     {
         landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
-
-        landingPage = new Scene(landingPageParent);
+        if (!loadedLandingPage)
+        {
+            landingPage = new Scene(landingPageParent);
+            loadedLandingPage = true;
+        }
         primaryStage.setScene(landingPage);
         primaryStage.show();
 
-
         // ScrollPane = (ScrollPane)FXMLLoader.
-        ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
-
-        VBox buttons = (VBox)hillScroller.lookup("#HillButtonScrollerVBOX");
-        buttons.getChildren().clear();
-        for (int i = 0; i < 4; i++)
+        if (!loadedHills)
         {
-            landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
-            Button hillButton = (Button)landingPageParent.lookup("#HillButton");
-            hillButton.setLayoutX(0);
-            hillButton.setLayoutY(0);
-            hillButton.setId("AutoButton" + i);
+            ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
 
-            hillButton.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event)
-                {
-                    try
+            VBox buttons = (VBox)hillScroller.lookup("#HillButtonScrollerVBOX");
+            buttons.getChildren().clear();
+
+            hills = Hills.getInstance().getNHills(100);
+            currentTime = Instant.now();
+
+            for (int i = 0; i < hills.size(); i++)
+            {
+                landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+                Button hillButton = (Button)landingPageParent.lookup("#HillButton");
+                // System.out.println(hillButton.getChildrenUnmodifiable().size());
+                Node hillButtonVBox = (VBox)hillButton.getGraphic().lookup("#HillButtonVBox");
+
+                Hill hill = hills.get(i);
+                WeatherForecast forecast = hill.getHillWeatherMetric();
+                Weather weather = forecast.getWeatherAt(currentTime);
+
+                hillButton.setLayoutX(0);
+                hillButton.setLayoutY(0);
+                hillButton.setId("AutoButton" + i);
+
+                Text hillName = (Text)hillButtonVBox.lookup("#HillName");
+                hillName.setText(hill.getName());
+
+                Text regionName = (Text)hillButtonVBox.lookup("#RegionName");
+                regionName.setText(hill.getCounty());
+
+                Text hillScore = (Text)hillButtonVBox.lookup("#HillScore");
+                hillScore.setText("" + hill.getPreciseScore(0));
+
+                hillButton.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event)
                     {
-                        loadHillPage(primaryStage);
-                    } catch(Exception e) {}
-                }
-            });
+                        try
+                        {
+                            loadHillPage(primaryStage, hillButton);
+                        } catch(Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                });
 
-            buttons.getChildren().add(hillButton);
+                buttons.getChildren().add(hillButton);
+            }
+
+            hillScroller.setContent(buttons);
+
+            loadedHills = true;
         }
-
-        hillScroller.setContent(buttons);
     }
 
-    public void loaddHillRecommendations(Stage primaryStage)
+    public void loadHillRecommendations(Stage primaryStage)
     {
     }
 
-    public void loadHillPage(Stage primaryStage) throws java.io.IOException
+    public void loadHillPage(Stage primaryStage, Button btn) throws java.io.IOException
     {
         hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
-        hillPage = new Scene(hillPageParent);
+        if (!loadedHillPage)
+        {
+            hillPage = new Scene(hillPageParent);
+            loadedHillPage = true;
+        }
 
         primaryStage.setScene(hillPage);
         primaryStage.show();
+
+        // System.out.println(btn.getId());
+        // System.out.println(btn.getId().substring(10));
+
+        int index = Integer.parseInt(btn.getId().substring(10));
+        System.out.println(index);
+        Hill hill = hills.get(index);
+
+        Weather weather = hill.getHillWeatherMetric().getWeatherAt(currentTime);
+
+        Label hillName = (Label)hillPageParent.lookup("#MountainName");
+        hillName.setText(hill.getName());
+
+        Label date = (Label)hillPageParent.lookup("#Date");
+        date.setText(currentTime.toString());
+
+        Label region = (Label)hillPageParent.lookup("#Region");
+        region.setText(String.format("%s", hill.getCounty()));
+
+        Label height = (Label)hillPageParent.lookup("#Height");
+        height.setText(String.format("%.2fm", hill.getAltitude()));
+
+        Label temp = (Label)hillPageParent.lookup("#Temp");
+        temp.setText(String.format("%.1f", weather.getTemperature()));
+
+        Label cloudCover = (Label)hillPageParent.lookup("#CloudCover");
+        cloudCover.setText(String.format("%.1f", weather.getCloudCoverage()));
+
+        Label rain = (Label)hillPageParent.lookup("#Rain");
+        rain.setText(String.format("%.1f", weather.getPrecipitation()));
+
+        Label windSpeed = (Label)hillPageParent.lookup("#Windspeed");
+        windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
 
         Button closeButton = (Button)hillPageParent.lookup("#CloseButton");
 
