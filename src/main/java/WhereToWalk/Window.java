@@ -196,7 +196,7 @@ public class Window extends Application
         Label windSpeed = (Label)hillPageParent.lookup("#Windspeed");
         windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
 
-        int score = 23;
+        int score = hill.getPreciseScore(0);
 
         setPieChart(hillPageParent, score);
         setScoreText(hillPageParent, score);
