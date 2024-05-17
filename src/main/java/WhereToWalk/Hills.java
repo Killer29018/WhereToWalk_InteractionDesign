@@ -9,16 +9,15 @@ import java.util.stream.Collectors;
 
 import WhereToWalk.loc.LocationDistance;
 import WhereToWalk.loc.LocationFinder;
-import WhereToWalk.sorting.HighestScore;
-import WhereToWalk.sorting.ShortestDistance;
 import WhereToWalk.weather.WeatherForecast;
 import org.json.*;
 
 public class Hills {
-    private List<Hill> hills = new ArrayList<>();
+    private final List<Hill> hills = new ArrayList<>();
+    private List<Hill> hillsResults = new ArrayList<>();
     private static int pointer;
     private static Hills instance = null;
-    private static List<Hill> displayedHills;
+    private Comparator<Hill> sorter;
 
     public static Hills getInstance() {
         if (instance == null)
@@ -27,7 +26,7 @@ public class Hills {
     }
 
     public List<Hill> getHills() {
-        return hills;
+        return hillsResults;
     }
 
     private Hills() {
@@ -78,25 +77,36 @@ public class Hills {
                 double[] scores = weathers.get(gid).getScores();
                 hills.add(new Hill(name, lat, lon, distscore, scores));
             }
+            hillsResults = hills;
         } catch (Exception e) {
             System.out.println(e.getClass());
             System.out.println(e.getMessage());
         }
     }
 
-    protected void sortHills(Comparator<Hill> sorter) {
+    private void sortHills() {
         LocationFinder.LocationFinder();
-        hills.sort(sorter);
+        hillsResults.sort(sorter);
         pointer = 0;
     }
+
 
     protected List<Hill> getNHills(int n) {
         List<Hill> hillSubset = new ArrayList<>();
         for (int i=pointer; i<pointer+n;i++) {
-            hillSubset.add(hills.get(i));
+            try {
+                hillSubset.add(hillsResults.get(i));
+            } catch (Exception e) {
+                n = i-pointer;
+                break;
+            }
         }
         pointer += n;
         return hillSubset;
+    }
+
+    protected boolean reachedEnd() {
+        return (pointer == hillsResults.size());
     }
 
     protected  List<Hill> getNHillsSorted(int n, Comparator<Hill> sorter) {
@@ -105,31 +115,36 @@ public class Hills {
         return hills;
     }
 
-    protected List<Hill> search(String text) {
+    protected void search(String text) {
         Pattern pattern = Pattern.compile(".*"+text+".*");
         Predicate<Hill> p = h -> {
             Matcher matcher = pattern.matcher(h.getName());
             return matcher.matches();
         };
-        return filter(p);
+        hillsResults = hills;
+        filter(p);
     }
 
-    protected List<Hill> filter(Predicate<Hill> p) {
+    protected void filter(Predicate<Hill> p) {
         LocationFinder.LocationFinder();
-        List<Hill> filteredHills = hills
+        List<Hill> filteredHills = hillsResults
                 .stream()
                 .filter(p)
                 .collect(Collectors.toList());
-        return filteredHills;
+        hillsResults = filteredHills;
+        sortHills();
     }
 
-    public static void main(String[] args) {
-        Comparator<Hill> sorter = new ShortestDistance();
-        Hills hills = new Hills();
-        hills.sortHills(new ShortestDistance());
-        List<Hill> h = hills.search("Crag");
-        for (Hill hill : h) {
-            System.out.println(hill.getName());
-        }
+    protected Comparator<Hill> getSorter() {
+        return sorter;
+    }
+
+    protected void setSorter(Comparator<Hill> sorter) {
+        this.sorter = sorter;
+        sortHills();
+    }
+
+    protected void resetResults() {
+        hillsResults = hills;
     }
 }

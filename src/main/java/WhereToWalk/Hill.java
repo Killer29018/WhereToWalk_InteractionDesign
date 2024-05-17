@@ -12,6 +12,7 @@ public class Hill {
     // Distance score
     private double dscore;
 
+    // Weather metrics
     private WeatherForecast forecast = null;
 
     protected Hill(String name, double lat, double lon, double dscore, double[] wscores) {
@@ -49,6 +50,12 @@ public class Hill {
 
     public double getLon() {
         return lon;
+    }
+
+    public WeatherForecast getHillWeatherMetric() {
+        if (forecast == null)
+            forecast = new WeatherForecast(lat, lon);
+        return forecast;
     }
 
 }

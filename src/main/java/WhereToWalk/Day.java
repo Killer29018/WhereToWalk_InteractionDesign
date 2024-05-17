@@ -39,8 +39,8 @@ public class Day {
         return number;
     }
 
-    public static void setSelectedDay(Day day) {
-        selectedDay = day;
+    public void setSelectedDay() {
+        selectedDay = this;
     }
 
     public static Day[] getDays() {
@@ -51,7 +51,7 @@ public class Day {
             d[i] = new Day(ld.getDayOfMonth(), ld.getMonth().toString(), i, ld.getDayOfWeek().toString());
             ld = ld.plusDays(1);
         }
-        setSelectedDay(d[0]);
+        d[0].setSelectedDay();
         days = d;
         return days;
     }
