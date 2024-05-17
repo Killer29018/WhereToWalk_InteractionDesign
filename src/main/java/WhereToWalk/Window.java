@@ -4,11 +4,15 @@ import java.net.URL;
 import java.io.*;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.geometry.*;
@@ -101,7 +105,7 @@ public class Window extends Application
         hillScroller.setContent(buttons);
     }
 
-    public void loaddHillRecommendations(Stage primaryStage)
+    public void loadHillRecommendations(Stage primaryStage)
     {
     }
 
@@ -112,6 +116,11 @@ public class Window extends Application
 
         primaryStage.setScene(hillPage);
         primaryStage.show();
+
+        int score = 23;
+
+        setPieChart(hillPageParent, score);
+        setScoreText(hillPageParent, score);
 
         Button closeButton = (Button)hillPageParent.lookup("#CloseButton");
 
@@ -124,5 +133,25 @@ public class Window extends Application
                 } catch (Exception e) {}
             }
         });
+    }
+
+    public void setPieChart(Parent pageParent, int score) {
+        PieChart scoreChart = (PieChart) pageParent.lookup("#MainScoreDial");
+        scoreChart.setLayoutX(-20);
+        scoreChart.setLayoutY(-5);
+        scoreChart.setStartAngle(90);
+
+
+        ObservableList<PieChart.Data> scoreData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Score", score),
+                        new PieChart.Data("Excess", 100 - score));
+        scoreChart.setData(scoreData);
+    }
+
+    public void setScoreText(Parent pageParent, int score) {
+        Label scoreText = (Label) pageParent.lookup("#MainScoreNum");
+
+        scoreText.setText(Integer.toString(score));
     }
 }
