@@ -72,10 +72,12 @@ public class Hills {
                 double lon = obj.getDouble("lon");
                 int gid = obj.getInt("groupid");
                 String name = obj.getString("name");
+                String county = obj.getString("county");
+                double altitude = obj.getDouble("alt");
 
                 double distscore = mindist / LocationDistance.distance(lat, ulat, lon, ulon, 0, 0);
                 double[] scores = weathers.get(gid).getScores();
-                hills.add(new Hill(name, lat, lon, distscore, scores));
+                hills.add(new Hill(name, lat, lon, county, altitude, distscore, scores));
             }
             hillsResults = hills;
         } catch (Exception e) {

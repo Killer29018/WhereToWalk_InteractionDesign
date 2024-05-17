@@ -14,10 +14,9 @@ public class Predicates {
         };
     }
 
-     // NEED ALTITUDE
-//    protected static Predicate<Hill> altitude(int from, int to) { // altitude in m
-//        return h -> from<=h.getAltitude() && h.getAltitude()<=to;
-//    }
+    protected static Predicate<Hill> altitude(int from, int to) { // altitude in m
+        return h -> from<=h.getAltitude() && h.getAltitude()<=to;
+    }
 
     protected static Predicate<Hill> score(int from, int to) { // score 0-100
         return h -> from<=h.getApproximateScore(Day.getSelectedDay().getNumber()) && h.getApproximateScore(Day.getSelectedDay().getNumber())<=to;
