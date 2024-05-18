@@ -109,7 +109,7 @@
                      <children>
                         <ImageView id="WeatherIcon" fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/icons/sunshine%20and%20clouds.png" />
+                              <Image url="@../assets/weather_condition_icons/sunshine_and_clouds.png" />
                            </image>
                            <viewport>
                               <Rectangle2D />

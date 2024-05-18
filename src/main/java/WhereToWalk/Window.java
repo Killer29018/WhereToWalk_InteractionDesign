@@ -10,6 +10,8 @@ import java.time.*;
 import javafx.application.Application;
 import javafx.event.*;
 import javafx.scene.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.*;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -26,6 +28,7 @@ import javafx.event.*;
 import javafx.scene.input.*;
 
 import javafx.fxml.FXMLLoader;
+
 
 public class Window extends Application
 {
@@ -125,6 +128,11 @@ public class Window extends Application
 
                 Text hillScore = (Text)hillButtonVBox.lookup("#HillScore");
                 hillScore.setText("" + hill.getPreciseScore(0));
+
+                ImageView hillIcon = (ImageView) hillButtonVBox.lookup("#WeatherIcon");
+
+                String weatherIconString = pickWeatherIcon(weather);
+                hillIcon.setImage(new Image("file:src/main/resources/WhereToWalk/assets/weather_condition_icons/" + weatherIconString));
 
                 int score = hill.getPreciseScore(0);
 
@@ -239,5 +247,34 @@ public class Window extends Application
         Label scoreText = (Label) pageParent.lookup("#MainScoreNum");
 
         scoreText.setText(Integer.toString(score));
+    }
+
+
+    public String pickWeatherIcon(Weather hillWeather) {
+
+        double cloudCover = hillWeather.getCloudCoverage();
+        double rain = hillWeather.getPrecipitation();
+        double windSpeed = hillWeather.getWindSpeed();
+
+        if (windSpeed > 10.0) {
+            return "wind.png";
+        }
+
+        if (cloudCover < 20.0) {
+            return "sun.png";
+        } else if (cloudCover < 50.0){
+            if (rain > 30.0) {
+                return "sunshine_and_rainclouds.png";
+            } else {
+                return "sunshine_and_clouds.png";
+            }
+        } else {
+            if (rain > 30.0) {
+                return "raincloud.png";
+            } else {
+                return "cloud.png";
+            }
+        }
+
     }
 }
