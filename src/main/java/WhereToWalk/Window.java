@@ -259,7 +259,7 @@ public class Window extends Application
         cloudCover.setText(String.format("%.1f", weather.getCloudCoverage()));
 
         Label rain = (Label)hillPageParent.lookup("#Rain");
-        rain.setText(String.format("%.1f", weather.getPrecipitation()));
+        rain.setText(String.format("%.1f", weather.getPrecipitation()*100.0));
 
         Label windSpeed = (Label)hillPageParent.lookup("#Windspeed");
         windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
@@ -306,7 +306,7 @@ public class Window extends Application
     public String pickWeatherIcon(Weather hillWeather) {
 
         double cloudCover = hillWeather.getCloudCoverage();
-        double rain = hillWeather.getPrecipitation();
+        double rain = hillWeather.getPrecipitation()*100.0;
         double windSpeed = hillWeather.getWindSpeed();
 
         if (windSpeed > 8.0) {
