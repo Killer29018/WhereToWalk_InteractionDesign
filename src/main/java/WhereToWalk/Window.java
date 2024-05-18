@@ -118,12 +118,10 @@ public class Window extends Application
         TextField searchBar = (TextField)landingPageParent.lookup("#SearchBarField");
         searchBar.textProperty().addListener((obs, oldV, newV) ->
                 {
-                    // System.out.println(newV);
                     if (newV != "")
                     {
                         Hills.getInstance().search(newV);
                         loadHills();
-
                         try {
                             loadLandingPage(primaryStage);
                         } catch (java.io.IOException e) {
@@ -140,6 +138,7 @@ public class Window extends Application
         ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
 
         VBox buttons = (VBox)hillScroller.getContent();
+        // buttons.setMinHeight(600);
         buttons.getChildren().clear();
 
         currentTime = Instant.now();
@@ -169,6 +168,20 @@ public class Window extends Application
 
             Text hillScore = (Text)hillButtonVBox.lookup("#HillScore");
             hillScore.setText("" + hill.getPreciseScore(0));
+
+            int score = hill.getPreciseScore(0);
+
+            PieChart hillScoreDial = (PieChart) hillButtonVBox.lookup("#HillButtonScoreDial");
+            hillScoreDial.setLayoutX(-49);
+            hillScoreDial.setLayoutY(2);
+            hillScoreDial.setStartAngle(90);
+
+
+            ObservableList<PieChart.Data> scoreData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Score", score),
+                        new PieChart.Data("Excess", 100 - score));
+            hillScoreDial.setData(scoreData);
 
             hillButton.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event)
@@ -243,7 +256,7 @@ public class Window extends Application
 
         int score = hill.getPreciseScore(0);
 
-        setPieChart(hillPageParent, score);
+        setPieChart(hillPageParent, "MainScoreDial", score);
         setScoreText(hillPageParent, score);
 
         Button closeButton = (Button)hillPageParent.lookup("#CloseButton");
@@ -259,8 +272,8 @@ public class Window extends Application
         });
     }
 
-    public void setPieChart(Parent pageParent, int score) {
-        PieChart scoreChart = (PieChart) pageParent.lookup("#MainScoreDial");
+    public void setPieChart(Parent pageParent, String pie_id, int score) {
+        PieChart scoreChart = (PieChart) pageParent.lookup("#" + pie_id);
         scoreChart.setLayoutX(-20);
         scoreChart.setLayoutY(-5);
         scoreChart.setStartAngle(90);
