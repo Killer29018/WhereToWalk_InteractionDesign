@@ -132,6 +132,8 @@ public class WeatherForecast {
                 cur = cur.plusSeconds(86400);
             }
 
+        } catch (java.io.IOException e) {
+            System.out.println("Failed to load weather");
         } catch (Exception ex) {
             System.out.println(ex.getClass().getName());
         }

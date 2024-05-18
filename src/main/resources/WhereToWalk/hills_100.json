@@ -1,0 +1,708 @@
+{
+    "hills": [
+        {
+            "name": "Ben Chonzie",
+            "lat": 56.453851,
+            "lon": -3.992057,
+            "groupid": 0,
+            "alt": 930.4,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Creagan na Beinne",
+            "lat": 56.506927,
+            "lon": -4.041708,
+            "groupid": 0,
+            "alt": 889.1,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Creag Uchdag",
+            "lat": 56.465278,
+            "lon": -4.098123,
+            "groupid": 0,
+            "alt": 878.8,
+            "county": "Perth and Kinross/Stirling"
+        },
+        {
+            "name": "Auchnafree Hill",
+            "lat": 56.454355,
+            "lon": -3.934667,
+            "groupid": 0,
+            "alt": 787.4,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Shee of Ardtalnaig [Ciste Buide a' Claidheimh]",
+            "lat": 56.491453,
+            "lon": -4.065032,
+            "groupid": 0,
+            "alt": 758.2,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Beinn na Gainimh",
+            "lat": 56.48786,
+            "lon": -3.890033,
+            "groupid": 0,
+            "alt": 729.3,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Meall Buidhe",
+            "lat": 56.419022,
+            "lon": -4.308646,
+            "groupid": 0,
+            "alt": 719.2,
+            "county": "Stirling"
+        },
+        {
+            "name": "Creag Ruadh",
+            "lat": 56.436799,
+            "lon": -4.152177,
+            "groupid": 0,
+            "alt": 712.3,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Meall Dearg",
+            "lat": 56.552191,
+            "lon": -3.812785,
+            "groupid": 0,
+            "alt": 690.3,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Creag Each",
+            "lat": 56.410309,
+            "lon": -4.185387,
+            "groupid": 0,
+            "alt": 673.7,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Creag Gharbh",
+            "lat": 56.466779,
+            "lon": -4.221539,
+            "groupid": 0,
+            "alt": 637.4,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall nan Caorach",
+            "lat": 56.484905,
+            "lon": -3.741233,
+            "groupid": 0,
+            "alt": 623.7,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Meall Reamhar",
+            "lat": 56.479061,
+            "lon": -3.751683,
+            "groupid": 0,
+            "alt": 617.8,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Creag na Criche",
+            "lat": 56.496882,
+            "lon": -3.649101,
+            "groupid": 0,
+            "alt": 456.8,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Birnam Hill - King's Seat",
+            "lat": 56.543579,
+            "lon": -3.575758,
+            "groupid": 0,
+            "alt": 403.8,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Knock of Crieff",
+            "lat": 56.389338,
+            "lon": -3.82699,
+            "groupid": 0,
+            "alt": 279.0,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Ben Vorlich",
+            "lat": 56.34268,
+            "lon": -4.219464,
+            "groupid": 0,
+            "alt": 985.3,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Stuc a' Chroin",
+            "lat": 56.329315,
+            "lon": -4.237533,
+            "groupid": 0,
+            "alt": 973.0,
+            "county": "Perth and Kinross/Stirling"
+        },
+        {
+            "name": "Beinn Each",
+            "lat": 56.313957,
+            "lon": -4.262183,
+            "groupid": 0,
+            "alt": 813.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall na Fearna",
+            "lat": 56.341247,
+            "lon": -4.184316,
+            "groupid": 0,
+            "alt": 810.0,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Beinn Dearg",
+            "lat": 56.352103,
+            "lon": -4.110645,
+            "groupid": 0,
+            "alt": 706.6,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Sgiath a' Chaise",
+            "lat": 56.323613,
+            "lon": -4.291787,
+            "groupid": 0,
+            "alt": 644.2,
+            "county": "Stirling"
+        },
+        {
+            "name": "Mor Bheinn",
+            "lat": 56.365379,
+            "lon": -4.079693,
+            "groupid": 0,
+            "alt": 640.3,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Ben Clach",
+            "lat": 56.313211,
+            "lon": -4.007266,
+            "groupid": 0,
+            "alt": 533.1,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Torlum",
+            "lat": 56.350611,
+            "lon": -3.91253,
+            "groupid": 0,
+            "alt": 393.7,
+            "county": "Perth and Kinross"
+        },
+        {
+            "name": "Ben More",
+            "lat": 56.385952,
+            "lon": -4.540087,
+            "groupid": 0,
+            "alt": 1174.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Binnein",
+            "lat": 56.370717,
+            "lon": -4.535753,
+            "groupid": 0,
+            "alt": 1165.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Coire an Lochain",
+            "lat": 56.364904,
+            "lon": -4.529521,
+            "groupid": 0,
+            "alt": 1068.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Cruach Ardrain SW Top",
+            "lat": 56.355485,
+            "lon": -4.577884,
+            "groupid": 0,
+            "alt": 1044.9,
+            "county": "Stirling"
+        },
+        {
+            "name": "Cruach Ardrain",
+            "lat": 56.356438,
+            "lon": -4.576152,
+            "groupid": 0,
+            "alt": 1045.9,
+            "county": "Stirling"
+        },
+        {
+            "name": "An Caisteal",
+            "lat": 56.338618,
+            "lon": -4.62437,
+            "groupid": 0,
+            "alt": 995.9,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Lomond",
+            "lat": 56.190302,
+            "lon": -4.63301,
+            "groupid": 0,
+            "alt": 973.7,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall na Dige",
+            "lat": 56.370148,
+            "lon": -4.510273,
+            "groupid": 0,
+            "alt": 966.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Garbh",
+            "lat": 56.364821,
+            "lon": -4.573705,
+            "groupid": 0,
+            "alt": 957.7,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Tulaichean",
+            "lat": 56.342234,
+            "lon": -4.563315,
+            "groupid": 0,
+            "alt": 945.8,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn a' Chroin East Top",
+            "lat": 56.332406,
+            "lon": -4.599286,
+            "groupid": 0,
+            "alt": 940.1,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn a' Chroin West Top",
+            "lat": 56.331737,
+            "lon": -4.612297,
+            "groupid": 0,
+            "alt": 937.9,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Chabhair",
+            "lat": 56.325779,
+            "lon": -4.641476,
+            "groupid": 0,
+            "alt": 932.2,
+            "county": "Stirling"
+        },
+        {
+            "name": "Creag a' Bhragit",
+            "lat": 56.368977,
+            "lon": -4.513515,
+            "groupid": 0,
+            "alt": 923.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Garbh SE Top",
+            "lat": 56.361046,
+            "lon": -4.570666,
+            "groupid": 0,
+            "alt": 923.5,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Creagach",
+            "lat": 56.375644,
+            "lon": -4.496267,
+            "groupid": 0,
+            "alt": 906.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Ledi",
+            "lat": 56.258659,
+            "lon": -4.322375,
+            "groupid": 0,
+            "alt": 879.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob a' Choin",
+            "lat": 56.309673,
+            "lon": -4.560163,
+            "groupid": 0,
+            "alt": 869.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall an t-Seallaidh",
+            "lat": 56.380412,
+            "lon": -4.362599,
+            "groupid": 0,
+            "alt": 852.7,
+            "county": "Stirling"
+        },
+        {
+            "name": "Benvane",
+            "lat": 56.293295,
+            "lon": -4.368435,
+            "groupid": 0,
+            "alt": 821.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Creag Mac Ranaich",
+            "lat": 56.399885,
+            "lon": -4.358052,
+            "groupid": 0,
+            "alt": 808.6,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Stacach [Ceann na Baintighearna] [Stob Fear-tomhais] [Beinn Stacath]",
+            "lat": 56.314724,
+            "lon": -4.468098,
+            "groupid": 0,
+            "alt": 771.8,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn a' Choin",
+            "lat": 56.281091,
+            "lon": -4.659915,
+            "groupid": 0,
+            "alt": 768.7,
+            "county": "Argyll and Bute/Stirling"
+        },
+        {
+            "name": "The Stob",
+            "lat": 56.37681,
+            "lon": -4.444528,
+            "groupid": 0,
+            "alt": 753.6,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall Mor",
+            "lat": 56.301086,
+            "lon": -4.613679,
+            "groupid": 0,
+            "alt": 746.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Venue",
+            "lat": 56.225006,
+            "lon": -4.461986,
+            "groupid": 0,
+            "alt": 729.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Stob Breac",
+            "lat": 56.316393,
+            "lon": -4.512064,
+            "groupid": 0,
+            "alt": 686.4,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall Cala",
+            "lat": 56.283893,
+            "lon": -4.411286,
+            "groupid": 0,
+            "alt": 674.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Creag Mhor",
+            "lat": 56.335482,
+            "lon": -4.411239,
+            "groupid": 0,
+            "alt": 659.8,
+            "county": "Stirling"
+        },
+        {
+            "name": "Cruinn a' Bheinn",
+            "lat": 56.210735,
+            "lon": -4.637104,
+            "groupid": 0,
+            "alt": 632.5,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Uamha",
+            "lat": 56.227249,
+            "lon": -4.604323,
+            "groupid": 0,
+            "alt": 596.8,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Uird",
+            "lat": 56.152448,
+            "lon": -4.578276,
+            "groupid": 0,
+            "alt": 597.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Binnean nan Gobhar",
+            "lat": 56.137292,
+            "lon": -4.545856,
+            "groupid": 0,
+            "alt": 586.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn an t-Sidhein",
+            "lat": 56.330759,
+            "lon": -4.351667,
+            "groupid": 0,
+            "alt": 572.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Meall Gainmheich",
+            "lat": 56.254715,
+            "lon": -4.407384,
+            "groupid": 0,
+            "alt": 566.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Dubh",
+            "lat": 56.206333,
+            "lon": -4.573894,
+            "groupid": 0,
+            "alt": 508.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Dearg",
+            "lat": 56.205721,
+            "lon": -4.276572,
+            "groupid": 0,
+            "alt": 427.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Craig of Monievreckie",
+            "lat": 56.188283,
+            "lon": -4.343554,
+            "groupid": 0,
+            "alt": 400.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Conic Hill",
+            "lat": 56.098586,
+            "lon": -4.521076,
+            "groupid": 0,
+            "alt": 361.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Lui [Beinn Laoigh]",
+            "lat": 56.397004,
+            "lon": -4.810509,
+            "groupid": 0,
+            "alt": 1131.4,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Lui NW Top",
+            "lat": 56.398021,
+            "lon": -4.812059,
+            "groupid": 0,
+            "alt": 1127.0,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Oss",
+            "lat": 56.389027,
+            "lon": -4.775179,
+            "groupid": 0,
+            "alt": 1029.8,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Ime",
+            "lat": 56.236794,
+            "lon": -4.817125,
+            "groupid": 0,
+            "alt": 1012.2,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Dubhchraig",
+            "lat": 56.391295,
+            "lon": -4.743193,
+            "groupid": 0,
+            "alt": 978.6,
+            "county": "Stirling"
+        },
+        {
+            "name": "Beinn Bhuidhe",
+            "lat": 56.326686,
+            "lon": -4.906709,
+            "groupid": 1,
+            "alt": 948.5,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Ben Vorlich",
+            "lat": 56.274021,
+            "lon": -4.755046,
+            "groupid": 1,
+            "alt": 942.8,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Ben Oss North Top",
+            "lat": 56.394173,
+            "lon": -4.770578,
+            "groupid": 1,
+            "alt": 941.3,
+            "county": "Stirling"
+        },
+        {
+            "name": "Ben Vorlich North Top",
+            "lat": 56.278819,
+            "lon": -4.755941,
+            "groupid": 1,
+            "alt": 932.1,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Narnain",
+            "lat": 56.220956,
+            "lon": -4.789003,
+            "groupid": 1,
+            "alt": 926.8,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn a' Chleibh",
+            "lat": 56.39023,
+            "lon": -4.83563,
+            "groupid": 1,
+            "alt": 916.3,
+            "county": "Argyll and Bute/Stirling"
+        },
+        {
+            "name": "Ben Vane",
+            "lat": 56.249786,
+            "lon": -4.781655,
+            "groupid": 1,
+            "alt": 915.76,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Bhuidhe East Top",
+            "lat": 56.332287,
+            "lon": -4.891682,
+            "groupid": 1,
+            "alt": 903.0,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Chorranach",
+            "lat": 56.246684,
+            "lon": -4.818222,
+            "groupid": 1,
+            "alt": 887.6,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "The Cobbler [Ben Arthur]",
+            "lat": 56.213037,
+            "lon": -4.808042,
+            "groupid": 1,
+            "alt": 884.0,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Chuirn",
+            "lat": 56.423887,
+            "lon": -4.789867,
+            "groupid": 1,
+            "alt": 880.0,
+            "county": "Argyll and Bute/Stirling"
+        },
+        {
+            "name": "Beinn Luibhean",
+            "lat": 56.23124,
+            "lon": -4.83634,
+            "groupid": 1,
+            "alt": 859.7,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Stob Coire Creagach [Binnein an Fhidhleir]",
+            "lat": 56.257699,
+            "lon": -4.858,
+            "groupid": 1,
+            "alt": 817.8,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Meall an Fhudair",
+            "lat": 56.33389,
+            "lon": -4.798859,
+            "groupid": 1,
+            "alt": 764.0,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Meall nan Gabhar",
+            "lat": 56.37553,
+            "lon": -4.858479,
+            "groupid": 1,
+            "alt": 744.0,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Meall nan Gabhar (old GR)",
+            "lat": 56.376809,
+            "lon": -4.860681,
+            "groupid": 1,
+            "alt": 743.4,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Beinn Damhain",
+            "lat": 56.316818,
+            "lon": -4.779041,
+            "groupid": 1,
+            "alt": 684.2,
+            "county": "Argyll and Bute"
+        },
+        {
+            "name": "Meall Odhar",
+            "lat": 56.430055,
+            "lon": -4.761704,
+            "groupid": 1,
+            "alt": 656.9,
+            "county": "Stirling"
+        },
+        {
+            "name": "Fiarach",
+            "lat": 56.398535,
+            "lon": -4.683437,
+            "groupid": 1,
+            "alt": 652.2,
+            "county": "Stirling"
+        }
+    ]
+}

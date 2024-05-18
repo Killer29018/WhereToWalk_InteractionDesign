@@ -49,7 +49,8 @@ public class Hills {
         }
 
         try {
-            InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills.json");
+            // InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills.json");
+            InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills_100.json");
             JSONObject tmp = JsonReader.readJsonFromInputStream(is);
             JSONArray arr = tmp.getJSONArray("hills");
 
@@ -118,9 +119,9 @@ public class Hills {
     }
 
     protected void search(String text) {
-        Pattern pattern = Pattern.compile(".*"+text+".*");
+        Pattern pattern = Pattern.compile(".*"+text.toLowerCase()+".*");
         Predicate<Hill> p = h -> {
-            Matcher matcher = pattern.matcher(h.getName());
+            Matcher matcher = pattern.matcher(h.getName().toLowerCase());
             return matcher.matches();
         };
         hillsResults = hills;

@@ -51,7 +51,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="43.0" layoutY="41.0" prefHeight="64.0" prefWidth="394.0" spacing="10.0">
          <children>
@@ -87,7 +87,7 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-3.0" layoutY="133.0" pannable="true" prefHeight="628.0" prefWidth="484.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #5B9BD5; -fx-border-color: #5B9BD5;" vbarPolicy="NEVER">
+      <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-4.0" layoutY="156.0" pannable="true" prefHeight="644.0" prefWidth="484.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #5B9BD5; -fx-border-color: #5B9BD5;" vbarPolicy="NEVER">
          <content>
             <VBox id="HillButtonScrollerVBOX" alignment="TOP_CENTER" prefHeight="1003.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: #5B9BD5;" />
          </content>

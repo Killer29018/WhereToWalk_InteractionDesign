@@ -6,6 +6,7 @@ import java.net.URL;
 import java.io.*;
 import java.util.*;
 import java.time.*;
+import java.time.format.*;
 
 import javafx.application.Application;
 import javafx.event.*;
@@ -36,6 +37,8 @@ public class Window extends Application
     // private final float aspect = 9.f/20.f;
     private final int mHeight = 800;
 
+    private final int hillCount =  100;
+
     Parent landingPageParent;
     Parent hillRecommendationsParent;
     Parent hillPageParent;
@@ -48,7 +51,6 @@ public class Window extends Application
 
     Boolean loadedLandingPage = false;
     Boolean loadedHillRecommendations = false;
-    Boolean loadedHillPage = false;
 
     List<Hill> hills;
     Instant currentTime;
@@ -62,9 +64,11 @@ public class Window extends Application
     @Override
     public void start(Stage primaryStage) throws java.io.IOException
     {
-        // landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
         hillRecommendationsParent = FXMLLoader.load(getClass().getResource("fxml/hill_recommendations.fxml"));
         hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
+
+        Hills.getInstance().setSorter((h1, h2) ->
+                 -(h1.getPreciseScore(0) - h2.getPreciseScore(0)));
 
         loadLandingPage(primaryStage);
 
@@ -83,9 +87,24 @@ public class Window extends Application
 
     }
 
+    public void loadHills()
+    {
+        hills = Hills.getInstance().getHills();
+        loadedHills = true;
+    }
+
     public void loadLandingPage(Stage primaryStage) throws java.io.IOException
     {
-        landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+        try
+        {
+            landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+        }
+        catch (java.io.IOException e)
+        {
+            System.out.println(e.getStackTrace());
+            // System.out.println(e.getMessage());
+        }
+
         if (!loadedLandingPage)
         {
             landingPage = new Scene(landingPageParent);
@@ -94,88 +113,121 @@ public class Window extends Application
         primaryStage.setScene(landingPage);
         primaryStage.show();
 
-        // ScrollPane = (ScrollPane)FXMLLoader.
         if (!loadedHills)
         {
-            ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
+            loadHills();
+        }
 
-            VBox buttons = (VBox)hillScroller.lookup("#HillButtonScrollerVBOX");
-            buttons.getChildren().clear();
-
-            hills = Hills.getInstance().getNHills(100);
-            currentTime = Instant.now();
-
-            for (int i = 0; i < hills.size(); i++)
-            {
-                landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
-                Button hillButton = (Button)landingPageParent.lookup("#HillButton");
-                // System.out.println(hillButton.getChildrenUnmodifiable().size());
-                Node hillButtonVBox = (VBox)hillButton.getGraphic().lookup("#HillButtonVBox");
-
-                Hill hill = hills.get(i);
-                WeatherForecast forecast = hill.getHillWeatherMetric();
-                Weather weather = forecast.getWeatherAt(currentTime);
-
-                hillButton.setLayoutX(0);
-                hillButton.setLayoutY(0);
-                hillButton.setId("AutoButton" + i);
-
-                Text hillName = (Text)hillButtonVBox.lookup("#HillName");
-                hillName.setText(hill.getName());
-
-                Text regionName = (Text)hillButtonVBox.lookup("#RegionName");
-                regionName.setText(hill.getCounty());
-
-                Text hillScore = (Text)hillButtonVBox.lookup("#HillScore");
-                hillScore.setText("" + hill.getPreciseScore(0));
-
-                ImageView hillIcon = (ImageView) hillButtonVBox.lookup("#WeatherIcon");
-
-                String weatherIconString = pickWeatherIcon(weather);
-                hillIcon.setImage(new Image("file:src/main/resources/WhereToWalk/assets/weather_condition_icons/" + weatherIconString));
-
-                int score = hill.getPreciseScore(0);
-
-                PieChart hillScoreDial = (PieChart) hillButtonVBox.lookup("#HillButtonScoreDial");
-                hillScoreDial.setLayoutX(-49);
-                hillScoreDial.setLayoutY(2);
-                hillScoreDial.setStartAngle(90);
-
-
-                ObservableList<PieChart.Data> scoreData =
-                        FXCollections.observableArrayList(
-                                new PieChart.Data("Score", score),
-                                new PieChart.Data("Excess", 100 - score));
-                hillScoreDial.setData(scoreData);
-
-                hillButton.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event)
+        TextField searchBar = (TextField)landingPageParent.lookup("#SearchBarField");
+        searchBar.textProperty().addListener((obs, oldV, newV) ->
+                {
+                    if (newV != "")
                     {
-                        try
-                        {
-                            loadHillPage(primaryStage, hillButton);
-                        } catch(Exception e) {
+                        Hills.getInstance().search(newV);
+                        loadHills();
+                        try {
+                            loadLandingPage(primaryStage);
+                        } catch (java.io.IOException e) {
                             System.out.println(e.getMessage());
                         }
                     }
                 });
 
-                buttons.getChildren().add(hillButton);
+        loadHillButtons(primaryStage);
+    }
+
+    public void loadHillButtons(Stage primaryStage)
+    {
+        ScrollPane hillScroller = (ScrollPane)landingPageParent.lookup("#HillButtonScroller");
+
+        VBox buttons = (VBox)hillScroller.getContent();
+        // buttons.setMinHeight(600);
+        buttons.getChildren().clear();
+
+        currentTime = Instant.now();
+
+        for (int i = 0; i < hills.size(); i++)
+        {
+            try {
+                landingPageParent = FXMLLoader.load(getClass().getResource("fxml/landing_page.fxml"));
+            } catch (java.io.IOException e) {
+                System.out.println(e.getStackTrace());
             }
 
-            hillScroller.setContent(buttons);
+            Button hillButton = (Button)landingPageParent.lookup("#HillButton");
+            Node hillButtonVBox = (VBox)hillButton.getGraphic().lookup("#HillButtonVBox");
 
-            loadedHills = true;
+            Hill hill = hills.get(i);
+
+            hillButton.setLayoutX(0);
+            hillButton.setLayoutY(0);
+            hillButton.setId("AutoButton" + i);
+
+            Text hillName = (Text)hillButtonVBox.lookup("#HillName");
+            hillName.setText(hill.getName());
+
+            Text regionName = (Text)hillButtonVBox.lookup("#RegionName");
+            regionName.setText(hill.getCounty());
+
+            Text hillScore = (Text)hillButtonVBox.lookup("#HillScore");
+            hillScore.setText("" + hill.getPreciseScore(0));
+
+            ImageView hillIcon = (ImageView) hillButtonVBox.lookup("#WeatherIcon");
+
+            Weather weather = hill.getHillWeatherMetric().getWeatherAt(currentTime);
+
+            String weatherIconString = pickWeatherIcon(weather);
+            hillIcon.setImage(new Image("file:src/main/resources/WhereToWalk/assets/weather_condition_icons/" + weatherIconString));
+
+            int score = hill.getPreciseScore(0);
+
+            PieChart hillScoreDial = (PieChart) hillButtonVBox.lookup("#HillButtonScoreDial");
+            hillScoreDial.setLayoutX(-49);
+            hillScoreDial.setLayoutY(2);
+            hillScoreDial.setStartAngle(90);
+
+
+            ObservableList<PieChart.Data> scoreData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Score", score),
+                        new PieChart.Data("Excess", 100 - score));
+            hillScoreDial.setData(scoreData);
+
+            hillButton.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event)
+                {
+                    try
+                    {
+                        loadHillPage(primaryStage, hillButton);
+                    } catch(Exception e) {
+                        System.out.println(e.getStackTrace());
+                        System.out.println(e.getMessage());
+                    }
+                }
+            });
+
+            buttons.getChildren().add(hillButton);
         }
+
+        hillScroller.setContent(buttons);
     }
 
     public void loadHillRecommendations(Stage primaryStage)
     {
     }
 
-    public void loadHillPage(Stage primaryStage, Button btn) throws java.io.IOException
+    public void loadHillPage(Stage primaryStage, Button btn)
     {
-        hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
+        try
+        {
+            hillPageParent = FXMLLoader.load(getClass().getResource("fxml/hill_page.fxml"));
+        }
+        catch (java.io.IOException e)
+        {
+            System.out.println(e.getClass());
+            System.out.println(e.getMessage());
+        }
+
         hillPage = new Scene(hillPageParent);
 
         primaryStage.setScene(hillPage);
@@ -191,7 +243,8 @@ public class Window extends Application
         hillName.setText(hill.getName());
 
         Label date = (Label)hillPageParent.lookup("#Date");
-        date.setText(currentTime.toString());
+        LocalDateTime dateTime = LocalDateTime.ofInstant(currentTime, ZoneOffset.systemDefault());
+        date.setText(DateTimeFormatter.ofPattern("dd/MM").format(dateTime));
 
         Label region = (Label)hillPageParent.lookup("#Region");
         region.setText(String.format("%s", hill.getCounty()));
