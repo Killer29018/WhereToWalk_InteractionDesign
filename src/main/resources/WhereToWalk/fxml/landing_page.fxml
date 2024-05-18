@@ -47,6 +47,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -105,7 +106,7 @@
                         <Font name="Avenir Light" size="33.0" />
                      </font>
                   </Text>
-                  <HBox prefHeight="115.0" prefWidth="225.0">
+                  <HBox minHeight="152.0" prefWidth="225.0">
                      <children>
                         <ImageView id="WeatherIcon" fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,6 +116,7 @@
                               <Rectangle2D />
                            </viewport>
                         </ImageView>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="152.0" stroke="TRANSPARENT" strokeType="INSIDE" width="40.0" />
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <PieChart id="HillButtonScoreDial" labelsVisible="false" legendVisible="false" prefHeight="120.0" prefWidth="240.0" stylesheets="@../css/pie_style.css" />

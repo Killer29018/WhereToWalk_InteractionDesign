@@ -256,20 +256,20 @@ public class Window extends Application
         double rain = hillWeather.getPrecipitation();
         double windSpeed = hillWeather.getWindSpeed();
 
-        if (windSpeed > 10.0) {
+        if (windSpeed > 8.0) {
             return "wind.png";
         }
 
         if (cloudCover < 20.0) {
             return "sun.png";
-        } else if (cloudCover < 50.0){
-            if (rain > 30.0) {
+        } else if (cloudCover < 62.0){
+            if (rain > 15.0) {
                 return "sunshine_and_rainclouds.png";
             } else {
                 return "sunshine_and_clouds.png";
             }
         } else {
-            if (rain > 30.0) {
+            if (rain > 15.0) {
                 return "raincloud.png";
             } else {
                 return "cloud.png";
