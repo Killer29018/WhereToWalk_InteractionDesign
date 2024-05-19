@@ -322,7 +322,7 @@ public class Window extends Application
         double rain = hillWeather.getPrecipitation()*100.0;
         double windSpeed = hillWeather.getWindSpeed();
 
-        if (windSpeed > 8.0) {
+        if (windSpeed > 20.0) {
             return "wind.png";
         }
 
