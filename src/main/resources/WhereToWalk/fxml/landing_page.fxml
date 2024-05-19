@@ -81,29 +81,39 @@
          <children>
             <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
                <children>
-                  <TextField id="SearchBarField" layoutX="24.0" layoutY="5.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light; -fx-region-background: transparent;">
+                  <TextField id="SearchBarField" layoutX="24.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light; -fx-region-background: transparent;">
                      <font>
                         <Font name="Avenir Light" size="36.0" />
                      </font>
                   </TextField>
                </children>
             </Pane>
-            <Button id="SortButton" mnemonicParsing="false" prefHeight="64.0" prefWidth="85.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
+            <Button id="SortButton" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
                <graphic>
-                  <ImageView fitHeight="63.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/icons/sortbars.png" />
-                     </image>
-                  </ImageView>
+                  <Pane prefHeight="55.0" prefWidth="73.0">
+                     <children>
+                        <Circle fill="#00000026" layoutX="27.0" layoutY="28.0" radius="33.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/sortbars.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                </graphic>
             </Button>
-            <Button id="FilterButton" minWidth="39.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="80.0" style="-fx-region-background: false;" HBox.hgrow="NEVER">
+            <Button id="FilterButton" layoutX="252.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;">
                <graphic>
-                  <ImageView fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/icons/filter.png" />
-                     </image>
-                  </ImageView>
+                  <Pane prefHeight="36.0" prefWidth="35.0">
+                     <children>
+                        <Circle fill="#00000026" layoutX="25.0" layoutY="28.0" radius="33.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/filter.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                </graphic>
             </Button>
          </children>

@@ -272,6 +272,9 @@ public class Window extends Application
         Label windSpeed = (Label)hillPageParent.lookup("#Windspeed");
         windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
 
+        Label recommendation = (Label)hillPageParent.lookup("#Recommendation");
+        recommendation.setText(getRecommendationsText(weather));
+
         System.out.println(score);
         setPieChart(hillPageParent, "MainScoreDial", score);
         setScoreText(hillPageParent, score);
@@ -319,7 +322,7 @@ public class Window extends Application
     public String pickWeatherIcon(Weather hillWeather) {
 
         double cloudCover = hillWeather.getCloudCoverage();
-        double rain = hillWeather.getPrecipitation()*100.0;
+        double rain = hillWeather.getPrecipitation();
         double windSpeed = hillWeather.getWindSpeed();
 
         if (windSpeed > 20.0) {
@@ -329,16 +332,46 @@ public class Window extends Application
         if (cloudCover < 20.0) {
             return "sun.png";
         } else if (cloudCover < 62.0){
-            if (rain > 15.0) {
+            if (rain > 1.0) {
                 return "sunshine_and_rainclouds.png";
             } else {
                 return "sunshine_and_clouds.png";
             }
         } else {
-            if (rain > 15.0) {
+            if (rain > 1.0) {
                 return "raincloud.png";
             } else {
                 return "cloud.png";
+            }
+        }
+
+    }
+
+
+    public String getRecommendationsText(Weather hillWeather) {
+
+        double cloudCover = hillWeather.getCloudCoverage();
+        double rain = hillWeather.getPrecipitation();
+        double windSpeed = hillWeather.getWindSpeed();
+
+        if (windSpeed > 20.0) {
+            return "Conditions today are particularly windy - take extra care around steep cliffs and make sure to pack a windproof jacket to protect against windchill.";
+        }
+
+        if (cloudCover < 20.0) {
+            return "Expect glorious sunshine! Pack a sunhat and apply plenty of SPF! Don't forget that in the hills weather conditions can still change rapidly.";
+        } else if (cloudCover < 62.0){
+            if (rain > 1.0) {
+                return "It's going to be a bit of a damp day but with the right equipment (waterproof jacket and trousers) you still have a great day on the hills.";
+            } else {
+                return "Conditions are fair - still a reasonable chance of a cloud-free summit.";
+            }
+        } else {
+            if (rain > 1.0) {
+                return "Right - today is going to be a soggy day. Make the most of it by packing a good set of waterproofs and some spare dry clothes!";
+            } else {
+                //TODO factor in hill altitude to these recommendations
+                return "Don't expect brilliant views at the summit. Consider bringing a map and compass in case of particularly poor visibility.";
             }
         }
 
