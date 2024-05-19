@@ -105,7 +105,7 @@
           <RowConstraints maxHeight="79.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <PieChart id="MainScoreDial" labelsVisible="false" legendVisible="false" prefHeight="402.0" prefWidth="398.0" style="-fx-border-width: 10;" stylesheets="@../css/pie_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PieChart id="MainScoreDial" labelsVisible="false" legendVisible="false" prefHeight="402.0" prefWidth="398.0" style="-fx-border-width: 10;" stylesheets="@../css/pie_style_high.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Circle radius="110.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-translate-x: 55;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">

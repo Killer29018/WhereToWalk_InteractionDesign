@@ -150,7 +150,7 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="152.0" stroke="TRANSPARENT" strokeType="INSIDE" width="40.0" />
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <PieChart id="HillButtonScoreDial" labelsVisible="false" legendVisible="false" prefHeight="120.0" prefWidth="240.0" stylesheets="@../css/pie_style.css" />
+                              <PieChart id="HillButtonScoreDial" labelsVisible="false" legendVisible="false" prefHeight="120.0" prefWidth="240.0" stylesheets="@../css/pie_style_high.css" />
                               <Circle layoutX="72.0" layoutY="79.0" radius="41.0" stroke="TRANSPARENT" strokeType="INSIDE">
                                  <fill>
                                     <LinearGradient endX="1.0" endY="1.0">

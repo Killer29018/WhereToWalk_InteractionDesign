@@ -66,12 +66,14 @@ public class WeatherForecast {
             double p = weather.getPrecipitation();
             double t = weather.getTemperature();
             double ws = weather.getWindSpeed();
-            res += (0.2 * Math.exp(-0.01 * (Math.pow((t - 17.5), 2))) +
-                    0.5 * Math.exp(-0.1 * p) +
-                    0.2 * Math.exp(-0.05 * ws) +
-                    0.1 * Math.exp(-5 * cc));
+            res += (0.25 * Math.exp(-0.01 * (Math.pow((t - 17.5), 2))) +
+                    0.25 * Math.exp(-0.1 * p) +
+                    0.1 * Math.exp(-0.05 * ws) +
+                    0.4 * Math.exp(-5 * cc));
         }
-        return res / 24;
+        res = res / 24;
+
+        return res;
     }
 
     @SuppressWarnings("deprecation")

@@ -168,7 +168,7 @@ public class Window extends Application
             hillButton.setLayoutY(0);
             hillButton.setId("AutoButton" + hill.getID());
 
-            int score = hill.getPreciseScore();
+            int score = artificialScoreSpread(hill.getPreciseScore());
 
             Text hillName = (Text)hillButtonVBox.lookup("#HillName");
             hillName.setText(hill.getName());
@@ -193,10 +193,8 @@ public class Window extends Application
             hillScoreDial.setStartAngle(90);
 
 
-            ObservableList<PieChart.Data> scoreData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Score", score),
-                        new PieChart.Data("Excess", 100 - score));
+            ObservableList<PieChart.Data> scoreData = setPieData(score);
+
             hillScoreDial.setData(scoreData);
 
             hillButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -245,7 +243,7 @@ public class Window extends Application
 
 
         Weather weather = hill.getHillWeatherMetric().getWeatherNow();
-        int score = hill.getPreciseScore();
+        int score = artificialScoreSpread(hill.getPreciseScore());
 
         Label hillName = (Label)hillPageParent.lookup("#MountainName");
         hillName.setText(hill.getName());
@@ -273,7 +271,7 @@ public class Window extends Application
         windSpeed.setText(String.format("%.1f", weather.getWindSpeed()));
 
         Label recommendation = (Label)hillPageParent.lookup("#Recommendation");
-        recommendation.setText(getRecommendationsText(weather));
+        recommendation.setText(getRecommendationsText(weather, hill));
 
         System.out.println(score);
         setPieChart(hillPageParent, "MainScoreDial", score);
@@ -298,18 +296,59 @@ public class Window extends Application
 
     }
 
+    ObservableList<String> pieStylesList =
+            FXCollections.observableArrayList(
+                    "@../css/pie_style_high.css",
+                    "@../css/pie_style_low.css",
+                    "@../css/pie_style_medium_high.css",
+                    "@../css/pie_style_medium_low.css"
+            );
     public void setPieChart(Parent pageParent, String pie_id, int score) {
         PieChart scoreChart = (PieChart) pageParent.lookup("#" + pie_id);
         scoreChart.setLayoutX(-20);
         scoreChart.setLayoutY(-5);
         scoreChart.setStartAngle(90);
 
-
-        ObservableList<PieChart.Data> scoreData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Score", score),
-                        new PieChart.Data("Excess", 100 - score));
+        ObservableList<PieChart.Data> scoreData = setPieData(score);
         scoreChart.setData(scoreData);
+    }
+
+    public ObservableList<PieChart.Data> setPieData(int score) {
+        ObservableList<PieChart.Data> scoreData;
+        if (score <= 25) {
+            scoreData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("Score", score),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Excess", 100 - score));
+        } else if (score <= 50) {
+            scoreData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Score", score),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Excess", 100 - score));
+        } else if (score <= 75) {
+            scoreData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Score", score),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Excess", 100 - score));
+        } else {
+            scoreData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Blank", 0),
+                            new PieChart.Data("Score", score),
+                            new PieChart.Data("Excess", 100 - score));
+        }
+        return scoreData;
     }
 
     public void setScoreText(Parent pageParent, int score) {
@@ -347,33 +386,68 @@ public class Window extends Application
 
     }
 
+    public int artificialScoreSpread(int res) {
+        //slightly cheeky code just to make things look a bit nicer for now:
+//        res = res - 30;
+//        res = (int) (res * 1.43);
+//        if (res > 99) {
+//            res = 99;
+//        }
+//        if (res < 0) {
+//            res = 0;
+//        }
+        return res;
+    }
 
-    public String getRecommendationsText(Weather hillWeather) {
+    public String getRecommendationsText(Weather hillWeather, Hill hill) {
 
         double cloudCover = hillWeather.getCloudCoverage();
         double rain = hillWeather.getPrecipitation();
         double windSpeed = hillWeather.getWindSpeed();
 
-        if (windSpeed > 20.0) {
-            return "Conditions today are particularly windy - take extra care around steep cliffs and make sure to pack a windproof jacket to protect against windchill.";
-        }
+        if (hill.getAltitude() > 350.0) {
 
-        if (cloudCover < 20.0) {
-            return "Expect glorious sunshine! Pack a sunhat and apply plenty of SPF! Don't forget that in the hills weather conditions can still change rapidly.";
-        } else if (cloudCover < 62.0){
-            if (rain > 1.0) {
-                return "It's going to be a bit of a damp day but with the right equipment (waterproof jacket and trousers) you still have a great day on the hills.";
-            } else {
-                return "Conditions are fair - still a reasonable chance of a cloud-free summit.";
+            if (windSpeed > 20.0) {
+                return "Conditions today are particularly windy - take extra care around steep cliffs and make sure to pack a windproof jacket to protect against windchill.";
             }
+
+            if (cloudCover < 20.0) {
+                return "Expect glorious sunshine! Pack a sunhat and apply plenty of SPF! Don't forget that in the hills weather conditions can still change rapidly.";
+            } else if (cloudCover < 62.0) {
+                if (rain > 1.0) {
+                    return "It's going to be a bit of a damp day but with the right equipment (waterproof jacket and trousers) you can still have a great day on the hills.";
+                } else {
+                    return "Conditions are fair - still a reasonable chance of a cloud-free summit.";
+                }
+            } else {
+                if (rain > 1.0) {
+                    return "Right - today is going to be a soggy day. Make the most of it by packing a good set of waterproofs and some spare dry clothes!";
+                } else {
+
+                    return "Don't expect brilliant views at the summit. Consider bringing a map and compass in case of particularly poor visibility.";
+                }
+            }
+
         } else {
-            if (rain > 1.0) {
-                return "Right - today is going to be a soggy day. Make the most of it by packing a good set of waterproofs and some spare dry clothes!";
+            if (windSpeed > 20.0) {
+                return "It's going to be blustery - for maximum comfort make sure to pack a windproof jacket and some extra layers.";
+            }
+
+            if (cloudCover < 20.0) {
+                return "Expect glorious sunshine! Pack a sunhat and don't forget to reapply suncream throughout the day.";
+            } else if (cloudCover < 62.0) {
+                if (rain > 1.0) {
+                    return "Slightly rainy conditions but with the right equipment (waterproof jacket and trousers) you'll still have a great day out. Expect the occasional patch of sunlight!";
+                } else {
+                    return "Conditions are fair - cloudy but with patches of sun! Enjoy the dry conditions!";
+                }
             } else {
-                //TODO factor in hill altitude to these recommendations
-                return "Don't expect brilliant views at the summit. Consider bringing a map and compass in case of particularly poor visibility.";
+                if (rain > 1.0) {
+                    return "Right - today is going to be a soggy day. Make the most of it by packing a good set of waterproofs and some spare dry clothes!";
+                } else {
+                    return "Don't expect much sun, but don't let this discourage you from having a great walk! Happiness comes from within :)";
+                }
             }
         }
-
     }
 }
