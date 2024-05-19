@@ -38,21 +38,45 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="801.0" stroke="TRANSPARENT" strokeType="INSIDE" width="480.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8722000122070312" green="0.7644000053405762" blue="0.9800000190734863" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.8722000122070312" green="0.7644000053405762" blue="0.9800000190734863" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.5568627715110779" green="0.772549033164978" blue="0.9882352948188782" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
       <HBox layoutX="43.0" layoutY="41.0" prefHeight="64.0" prefWidth="394.0" spacing="10.0">
          <children>
             <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
@@ -84,14 +108,14 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-4.0" layoutY="156.0" pannable="true" prefHeight="644.0" prefWidth="484.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #5B9BD5; -fx-border-color: #5B9BD5;" vbarPolicy="NEVER">
+      <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-4.0" layoutY="156.0" pannable="true" prefHeight="644.0" prefWidth="484.0" style="-fx-background-color: transparent;" stylesheets="@../css/scroll_pane_style.css" vbarPolicy="NEVER">
          <content>
-            <VBox id="HillButtonScrollerVBOX" alignment="TOP_CENTER" prefHeight="1003.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: #5B9BD5;" />
+            <VBox id="HillButtonScrollerVBOX" alignment="TOP_CENTER" prefHeight="1003.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: transparent;" />
          </content>
       </ScrollPane>
-      <Button id="HillButton" layoutX="-410.0" layoutY="-51.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-border-width: 2;">
+      <Button id="HillButton" layoutX="-410.0" layoutY="-51.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-radius: 50; -fx-background-color: #00000026;" textFill="#00000026">
          <graphic>
-            <VBox id="HillButtonVBox" prefHeight="221.0" prefWidth="304.0">
+            <VBox id="HillButtonVBox" prefHeight="221.0" prefWidth="304.0" style="-fx-background-color: transparent;">
                <children>
                   <Text id="HillName" strokeType="OUTSIDE" strokeWidth="0.0" text="Hill Name" wrappingWidth="286.68412017822266">
                      <font>
@@ -103,7 +127,7 @@
                         <Font name="Avenir Light" size="33.0" />
                      </font>
                   </Text>
-                  <HBox minHeight="152.0" prefWidth="225.0">
+                  <HBox minHeight="152.0" prefWidth="225.0" style="-fx-background-color: transparent;">
                      <children>
                         <ImageView id="WeatherIcon" fitHeight="152.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -117,7 +141,30 @@
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <PieChart id="HillButtonScoreDial" labelsVisible="false" legendVisible="false" prefHeight="120.0" prefWidth="240.0" stylesheets="@../css/pie_style.css" />
-                              <Circle fill="WHITE" layoutX="72.0" layoutY="79.0" radius="41.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle layoutX="72.0" layoutY="79.0" radius="41.0" stroke="TRANSPARENT" strokeType="INSIDE">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.8784313797950745" green="0.7647058963775635" blue="0.9882352948188782" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="0.006711409395973154">
+                                             <color>
+                                                <Color red="0.8784313797950745" green="0.7647058963775635" blue="0.9882352948188782" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.5568627715110779" green="0.772549033164978" blue="0.9882352948188782" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Circle>
+                              <Circle fill="#00000026" layoutX="72.0" layoutY="79.0" radius="41.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                               <Text id="HillScore" layoutX="1.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" textAlignment="CENTER" wrappingWidth="142.21630859375">
                                  <font>
                                     <Font name="System Bold" size="56.0" />
@@ -136,9 +183,6 @@
                </padding>
             </VBox>
          </graphic>
-         <effect>
-            <DropShadow />
-         </effect>
          <padding>
             <Insets right="10.0" top="10.0" />
          </padding>
