@@ -9,6 +9,7 @@ import java.time.*;
 import java.time.temporal.*;
 import java.util.*;
 
+import WhereToWalk.loc.LocationFinder;
 import org.json.*;
 
 public class WeatherForecast {
@@ -20,7 +21,7 @@ public class WeatherForecast {
     // Here we employ java.time.Instant from JDK 1.8.
     private HashMap<Instant, Weather> weathers;
 
-    private double[] score = new double[7];
+    private double score;
 
     // This follows ISO8601, i.e. YYYY-MM-DDTHH:MM
     // where T is the letter 'T'
@@ -31,6 +32,10 @@ public class WeatherForecast {
             System.out.println("Parse exception for OpenMeteo");
             return null;
         }
+    }
+
+    public Weather getWeatherNow() {
+        return getWeatherAt(Instant.now());
     }
 
     // Get the weather forecast nearest, while after, the specified time.
@@ -49,13 +54,13 @@ public class WeatherForecast {
         return weathers.get(time);
     }
 
-    public double[] getScores() {
+    public double getScore() {
         return score;
     }
 
-    private double calcScore(Instant time, long duration) {
+    private double calcScore(Instant time) {
         double res = 0;
-        for (int i = 0; i < duration; i++) { // current day score
+        for (int i = 0; i < 24; i++) { // current day score
             Weather weather = getWeatherAt(time.plusSeconds(i * 3600));
             double cc = weather.getCloudCoverage() / 100.;
             double p = weather.getPrecipitation();
@@ -66,11 +71,7 @@ public class WeatherForecast {
                     0.2 * Math.exp(-0.05 * ws) +
                     0.1 * Math.exp(-5 * cc));
         }
-        return res / duration;
-    }
-
-    private double calcScore(Instant time) {
-        return calcScore(time, 24);
+        return res / 24;
     }
 
     @SuppressWarnings("deprecation")
@@ -118,19 +119,8 @@ public class WeatherForecast {
             }
 
             // Calculate scores according to weather
-            Instant cur = Instant.now();
-            Instant nextday = cur.truncatedTo(ChronoUnit.DAYS);
-            if (!cur.equals(nextday)) {
-                nextday = nextday.plusSeconds(86400);
-            }
 
-            Duration duration = Duration.between(cur, nextday);
-            score[0] = calcScore(cur, duration.toHours());
-            cur = nextday;
-            for (int i = 1; i < 7; i++) {
-                score[i] = calcScore(cur);
-                cur = cur.plusSeconds(86400);
-            }
+            score = calcScore(Instant.now());
 
         } catch (java.io.IOException e) {
             System.out.println("Failed to load weather");

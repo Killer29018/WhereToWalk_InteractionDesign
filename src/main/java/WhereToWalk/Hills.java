@@ -9,15 +9,18 @@ import java.util.stream.Collectors;
 
 import WhereToWalk.loc.LocationDistance;
 import WhereToWalk.loc.LocationFinder;
+import WhereToWalk.sorting.ShortestDistance;
 import WhereToWalk.weather.WeatherForecast;
 import org.json.*;
 
 public class Hills {
+    public static class NoSuchHillException extends Exception {};
     private final List<Hill> hills = new ArrayList<>();
-    private List<Hill> hillsResults = new ArrayList<>();
+    private static List<Hill> hillsResults = new ArrayList<>();
+    private static List<Hill> displayedHills = new ArrayList<>();
     private static int pointer;
     private static Hills instance = null;
-    private Comparator<Hill> sorter;
+    private static Comparator<Hill> sorter;
 
     public static Hills getInstance() {
         if (instance == null)
@@ -49,8 +52,8 @@ public class Hills {
         }
 
         try {
-            // InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills.json");
-            InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills_100.json");
+             InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills.json");
+//            InputStream is = new FileInputStream("./src/main/resources/WhereToWalk/hills_100.json");
             JSONObject tmp = JsonReader.readJsonFromInputStream(is);
             JSONArray arr = tmp.getJSONArray("hills");
 
@@ -72,13 +75,14 @@ public class Hills {
                 double lat = obj.getDouble("lat");
                 double lon = obj.getDouble("lon");
                 int gid = obj.getInt("groupid");
+                int id = obj.getInt("id");
                 String name = obj.getString("name");
                 String county = obj.getString("county");
                 double altitude = obj.getDouble("alt");
 
                 double distscore = mindist / LocationDistance.distance(lat, ulat, lon, ulon, 0, 0);
-                double[] scores = weathers.get(gid).getScores();
-                hills.add(new Hill(name, lat, lon, county, altitude, distscore, scores));
+                double score = weathers.get(gid).getScore();
+                hills.add(new Hill(id, name, lat, lon, county, altitude, distscore, score));
             }
             hillsResults = hills;
         } catch (Exception e) {
@@ -98,7 +102,9 @@ public class Hills {
         List<Hill> hillSubset = new ArrayList<>();
         for (int i=pointer; i<pointer+n;i++) {
             try {
-                hillSubset.add(hillsResults.get(i));
+                Hill hill = hillsResults.get(i);
+                hillSubset.add(hill);
+                displayedHills.add(hill);
             } catch (Exception e) {
                 n = i-pointer;
                 break;
@@ -135,6 +141,7 @@ public class Hills {
                 .filter(p)
                 .collect(Collectors.toList());
         hillsResults = filteredHills;
+        displayedHills = new ArrayList<>();
         sortHills();
     }
 
@@ -150,4 +157,19 @@ public class Hills {
     protected void resetResults() {
         hillsResults = hills;
     }
+
+    protected int getNumberResults() {
+        return hillsResults.size();
+    }
+
+    protected Hill getHillbyID(int id) throws NoSuchHillException {
+        for (Hill hill : displayedHills) {
+            if (hill.getID() == id) {
+                return hill;
+            }
+        }
+        throw new NoSuchHillException();
+    }
+
+
 }

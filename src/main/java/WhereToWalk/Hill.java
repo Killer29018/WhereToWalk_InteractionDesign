@@ -8,20 +8,22 @@ public class Hill {
     private double lon;
     private String county;
     private double altitude;
+    private int id;
 
     // Weather scores
-    private double[] wscores;
+    private double wscore;
     // Distance score
     private double dscore;
 
     // Weather metrics
     private WeatherForecast forecast = null;
 
-    protected Hill(String name, double lat, double lon, String county, double altitude, double dscore, double[] wscores) {
+    protected Hill(int id, String name, double lat, double lon, String county, double altitude, double dscore, double wscore) {
+        this.id = id;
         this.name = name;
         this.lat = lat;
         this.lon = lon;
-        this.wscores = wscores;
+        this.wscore = wscore;
         this.dscore = dscore;
         this.county = county;
         this.altitude = altitude;
@@ -30,18 +32,18 @@ public class Hill {
     // Get a 0-100 score.
     // Day 0 is the current day; max value of day is 6.
     // Calls weather api of this specific hill.
-    public int getPreciseScore(int day) {
+    public int getPreciseScore() {
         if (forecast == null)
             forecast = new WeatherForecast(lat, lon);
             
-        return (int) (forecast.getScores()[day] * 80 + dscore * 20);
+        return (int) (forecast.getScore() * 80 + dscore * 20);
     }
 
     // Get a 0-100 score.
     // Day 0 is the current day; max value of day is 6.
     // Based on the 100km-ranged group.
     public int getApproximateScore(int day) {
-        return (int) (wscores[day] * 80 + dscore * 20);
+        return (int) (wscore * 80 + dscore * 20);
     }
 
     public String getName() {
@@ -55,6 +57,8 @@ public class Hill {
     public double getLon() {
         return lon;
     }
+
+    public int getID() {return id;}
 
     public double getAltitude() {
         return altitude;

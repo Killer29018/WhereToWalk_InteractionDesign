@@ -1,5 +1,7 @@
 package WhereToWalk.weather;
 
+import WhereToWalk.loc.LocationFinder;
+
 import java.util.*;
 
 public class Weather {
@@ -55,4 +57,6 @@ public class Weather {
         this.temp = raw_data.get("temperature_2m");
         this.windspeed = raw_data.get("wind_speed_10m");
     }
+
+
 }

@@ -48,4 +48,3 @@ def gengroup():
     json.dump(groups, fres, indent=4);
 
 genhills();
-gengroup();
