@@ -141,6 +141,15 @@ public class Window extends Application
         });
 
         loadNHillButtons(primaryStage, 10, hillScroller, buttons);
+
+        Button sortButton = (Button)landingPage.lookup("#SortButton");
+        sortButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                loadSortMenu(landingPage);
+            }
+        });
+
     }
 
     public void loadNHillButtons(Stage primaryStage, int n, ScrollPane hillScroller, VBox buttons)
@@ -355,6 +364,16 @@ public class Window extends Application
         Label scoreText = (Label) pageParent.lookup("#MainScoreNum");
 
         scoreText.setText(Integer.toString(score));
+    }
+
+    public void loadSortMenu(Scene pageParent) {
+        MenuBar menuBar = (MenuBar) pageParent.lookup("#SortMenu");
+        if (menuBar.getLayoutX() != 280) {
+            menuBar.setLayoutX(280);
+            menuBar.setLayoutY(110);
+        } else {
+            menuBar.setLayoutX(-280);
+        }
     }
 
 
