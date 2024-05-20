@@ -44,7 +44,9 @@ public class Day {
     }
 
     public static Day[] getDays() {
-        if (days!=null) {return days;}
+        if (days!=null) {
+            return days;
+        }
         Day[] d = new Day[7];
         LocalDate ld = LocalDate.now();
         for (int i=0; i<d.length; i++) {

@@ -10,17 +10,14 @@ import java.io.InputStreamReader;
 // import java.net.URL;
 import java.nio.charset.Charset;
 
-public class JsonReader
-{
-    public static JSONObject readJsonFromInputStream(InputStream stream)
-    {
+public class JsonReader {
+    public static JSONObject readJsonFromInputStream(InputStream stream) {
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             StringBuilder sb = new StringBuilder();
             int cp;
 
-            while ((cp = rd.read()) != -1)
-            {
+            while ((cp = rd.read()) != -1) {
                 sb.append((char)cp);
             }
 
