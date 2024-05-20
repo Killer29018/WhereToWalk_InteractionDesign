@@ -56,7 +56,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="480.0" style="-fx-background-color: #5B9BD5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="801.0" stroke="TRANSPARENT" strokeType="INSIDE" width="480.0">
          <fill>
@@ -83,16 +83,16 @@
       </Rectangle>
       <HBox layoutX="43.0" layoutY="41.0" prefHeight="64.0" prefWidth="394.0" spacing="10.0">
          <children>
-            <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
+            <Pane id="SearchBarPane" prefHeight="64.0" prefWidth="320.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
                <children>
-                  <TextField id="SearchBarField" layoutX="24.0" prefHeight="63.0" prefWidth="209.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light; -fx-region-background: transparent;">
+                  <TextField id="SearchBarField" layoutX="24.0" prefHeight="63.0" prefWidth="265.0" promptText="search..." style="-fx-region-border: transparent; -fx-font-size: 20; -fx-font-family: Avenir Light; -fx-region-background: transparent;">
                      <font>
                         <Font name="Avenir Light" size="36.0" />
                      </font>
                   </TextField>
                </children>
             </Pane>
-            <MenuButton id="SortButton" accessibleRole="MENU_BUTTON" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;" styleClass=".arrow-button" HBox.hgrow="NEVER">
+            <MenuButton id="SortButton" accessibleRole="MENU_BUTTON" mnemonicParsing="false" prefHeight="64.0" prefWidth="75.0" style="-fx-region-background: false;" styleClass=".arrow-button" HBox.hgrow="NEVER">
               <items>
                  <MenuItem mnemonicParsing="false" text="name" />
                  <MenuItem mnemonicParsing="false" text="distance" />
@@ -111,21 +111,6 @@
                   </Pane>
                </graphic>
             </MenuButton>
-            <!-- <Button id="SortButton" accessibleRole="MENU_BUTTON" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;" HBox.hgrow="NEVER" /> -->
-            <Button id="FilterButton" accessibleRole="MENU_BUTTON" layoutX="252.0" layoutY="10.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;">
-               <graphic>
-                  <Pane prefHeight="36.0" prefWidth="35.0">
-                     <children>
-                        <Circle fill="#00000026" layoutX="25.0" layoutY="28.0" radius="33.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                        <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/icons/filter.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-               </graphic>
-            </Button>
          </children>
       </HBox>
       <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-4.0" layoutY="156.0" pannable="true" prefHeight="644.0" prefWidth="484.0" style="-fx-background-color: transparent;" stylesheets="@../css/scroll_pane_style.css" vbarPolicy="NEVER">
@@ -218,5 +203,20 @@
             </Menu>
          </menus>
       </MenuBar>
+      <!-- <Button id="SortButton" accessibleRole="MENU_BUTTON" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;" HBox.hgrow="NEVER" /> -->
+      <Button id="FilterButton" accessibleRole="MENU_BUTTON" layoutX="-349.0" layoutY="454.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="99.0" style="-fx-region-background: false;">
+         <graphic>
+            <Pane prefHeight="36.0" prefWidth="35.0">
+               <children>
+                  <Circle fill="#00000026" layoutX="25.0" layoutY="28.0" radius="33.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/filter.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
