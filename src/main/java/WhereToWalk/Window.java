@@ -1,7 +1,8 @@
 package WhereToWalk;
 
-import WhereToWalk.sorting.ShortestDistance;
+import WhereToWalk.sorting.*;
 import WhereToWalk.weather.*;
+
 import java.io.*;
 import java.time.*;
 import java.time.format.*;
@@ -161,14 +162,46 @@ public class Window extends Application {
         loadNHillButtons(primaryStage, 10, hillScroller, buttons);
 
         // Setup a callback for when the user clicks on the sort button
-        Button sortButton = (Button) landingPage.lookup("#SortButton");
-        sortButton.setOnAction(
-        new EventHandler<ActionEvent>() {
+        MenuButton sortButton = (MenuButton) landingPage.lookup("#SortButton");
+        MenuItem nameItem = sortButton.getItems().get(0);
+        nameItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                loadSortMenu(landingPage);
+                buttons.getChildren().clear();
+                Hills.getInstance().setSorter(new NameComparator());
+                loadNHillButtons(primaryStage, 10, hillScroller, buttons);
+                hillScroller.setVvalue(0);
             }
         });
+
+        MenuItem distanceItem = sortButton.getItems().get(1);
+        distanceItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                buttons.getChildren().clear();
+                Hills.getInstance().setSorter(new ShortestDistance());
+                loadNHillButtons(primaryStage, 10, hillScroller, buttons);
+                hillScroller.setVvalue(0);
+            }
+        });
+
+        MenuItem rankingItem = sortButton.getItems().get(2);
+        rankingItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                buttons.getChildren().clear();
+                Hills.getInstance().setSorter(new HighestScore());
+                loadNHillButtons(primaryStage, 10, hillScroller, buttons);
+                hillScroller.setVvalue(0);
+            }
+        });
+        // sortButton.setOnAction(
+        // new EventHandler<ActionEvent>() {
+        // @Override
+        // public void handle(ActionEvent actionEvent) {
+        // // loadSortMenu(landingPage);
+        // }
+        // });
     }
 
     /*
@@ -318,6 +351,7 @@ public class Window extends Application {
             // When the close button is clicked redirect back to the landing page
             closeButton.setOnAction(
             new EventHandler<ActionEvent>() {
+                @Override
                 public void handle(ActionEvent event) {
                     try {
                         loadLandingPage(primaryStage);
@@ -400,13 +434,21 @@ public class Window extends Application {
      * Load the sort menu when the button has been pressed
      */
     public void loadSortMenu(Scene pageParent) {
-        MenuBar menuBar = (MenuBar) pageParent.lookup("#SortMenu");
-        if (menuBar.getLayoutX() != 280) {
-            menuBar.setLayoutX(280);
-            menuBar.setLayoutY(110);
-        } else {
-            menuBar.setLayoutX(-280);
-        }
+        // MenuBar menuBar = (MenuBar) pageParent.lookup("#SortMenu");
+        // if (menuBar.getLayoutX() != 280) {
+        // menuBar.setLayoutX(280);
+        // menuBar.setLayoutY(110);
+        //
+        // MenuItem name = (MenuItem)sortMenu.getItems().get(0);
+        // name.setOnAction(new EventHandler<ActionEvent>() {
+        // @Override
+        // public void handle(ActionEvent event) {
+        // System.out.println("Name");
+        // }
+        // });
+        // } else {
+        // menuBar.setLayoutX(-280);
+        // }
     }
 
     public String pickWeatherIcon(Weather hillWeather) {
