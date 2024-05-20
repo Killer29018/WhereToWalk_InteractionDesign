@@ -109,7 +109,7 @@
       </HBox>
       <ScrollPane id="HillButtonScroller" hbarPolicy="NEVER" layoutX="-4.0" layoutY="156.0" pannable="true" prefHeight="644.0" prefWidth="484.0" style="-fx-background-color: transparent;" stylesheets="@../css/scroll_pane_style.css" vbarPolicy="NEVER">
          <content>
-            <VBox id="HillButtonScrollerVBOX" alignment="TOP_CENTER" prefHeight="1003.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: transparent;" />
+            <VBox id="HillButtonScrollerVBOX" alignment="TOP_CENTER" prefWidth="480.0" spacing="40.0" style="-fx-background-color: transparent;" />
          </content>
       </ScrollPane>
       <Button id="HillButton" layoutX="-410.0" layoutY="-51.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="394.0" style="-fx-background-radius: 50; -fx-background-color: #00000026;" textFill="#00000026">

@@ -135,6 +135,7 @@ public class Window extends Application {
                 try {
                     buttons.getChildren().clear();
                     loadNHillButtons(primaryStage, 10, hillScroller, buttons);
+                    hillScroller.setVvalue(0);
                 } catch (Exception e) {
                 }
             }
