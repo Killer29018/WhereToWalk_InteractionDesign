@@ -13,7 +13,7 @@ public class LocationFinder {
 
     // longitude
     private static double lon;
-    
+
     public static double getLatitude() {
         return lat;
     }
@@ -22,8 +22,11 @@ public class LocationFinder {
         return lon;
     }
 
-    // Finds current location by looking at public IP,
-    // and find the location where this IP corresponds to
+    /*
+     * Finds current location by looking at public IP,
+     * and find the location where this IP corresponds to
+     */
+    @SuppressWarnings("deprecation")
     public static void LocationFinder() {
         try {
             // This Web API can be used to get your public IP
@@ -31,7 +34,7 @@ public class LocationFinder {
             // IP values starting with 127 and 172, which are private IP addresses
             URL ipify = new URL("https://api.ipify.org");
             InputStream is = ipify.openStream();
-            
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String ip = reader.readLine();
 
@@ -44,11 +47,12 @@ public class LocationFinder {
 
             reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
-            for (int c; (c = reader.read()) != -1;)
+            for (int c; (c = reader.read()) != -1;) {
                 sb.append((char) c);
+            }
 
             JSONObject json = new JSONObject(sb.toString());
-            
+
             lat = json.getDouble("lat");
             lon = json.getDouble("lon");
 

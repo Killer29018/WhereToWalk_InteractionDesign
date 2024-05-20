@@ -23,8 +23,10 @@ public class WeatherForecast {
 
     private double score;
 
-    // This follows ISO8601, i.e. YYYY-MM-DDTHH:MM
-    // where T is the letter 'T'
+    /*
+     * This follows ISO8601, i.e. YYYY-MM-DDTHH:MM
+     * where T is the letter 'T'
+     */
     private Instant parseTime(String str) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(str).toInstant();
@@ -34,30 +36,45 @@ public class WeatherForecast {
         }
     }
 
+    /*
+     * Return the current weather at the specified location at the current time
+     */
     public Weather getWeatherNow() {
         return getWeatherAt(Instant.now());
     }
 
-    // Get the weather forecast nearest, while after, the specified time.
-    // Returns null if the time is too far from current.
+    /*
+     * Get the weather forecast nearest, while after, the specified time.
+     * Returns null if the time is too far from current.
+     */
     public Weather getWeatherAt(Instant time) {
         Instant untruncated = time;
         time = time.truncatedTo(ChronoUnit.HOURS);
 
         // In case time is exactly aligned to an hour, we don't need to add anything
-        if (!time.equals(untruncated))
+        if (!time.equals(untruncated)) {
             time = time.plusSeconds(3600);
+        }
 
-        if (!weathers.containsKey(time))
+        if (!weathers.containsKey(time)) {
             return null;
+        }
 
         return weathers.get(time);
     }
 
+    /*
+     * Return the score of the current weather
+     */
     public double getScore() {
         return score;
     }
 
+    /*
+     * Calculate the score of the weather based on a metric that
+     * depends on all the current weather condition based on how good the
+     * weather is for hill walking
+     */
     private double calcScore(Instant time) {
         double res = 0;
         for (int i = 0; i < 24; i++) { // current day score
@@ -76,6 +93,9 @@ public class WeatherForecast {
         return res;
     }
 
+    /*
+     * Create a new WeatherForecast and get the weather located at 'lat' and 'lon'
+     */
     @SuppressWarnings("deprecation")
     public WeatherForecast(double lat, double lon) {
         weathers = new HashMap<>();
@@ -91,6 +111,7 @@ public class WeatherForecast {
                 sb.append(s);
                 sb.append(",");
             }
+
             // Delete the final comma
             sb.deleteCharAt(sb.length() - 1);
 
@@ -107,14 +128,16 @@ public class WeatherForecast {
              * }
              * }
              */
+            // Retrieve the weather responce from the weather API
             raw_data = JsonReader.readJsonFromInputStream(is);
             JSONObject hourly = raw_data.getJSONObject("hourly");
             JSONArray time = hourly.getJSONArray("time");
 
             for (int i = 0; i < time.length(); i++) {
                 HashMap<String, Double> map = new HashMap<>();
-                for (String s : Weather.metrics)
+                for (String s : Weather.metrics) {
                     map.put(s, hourly.getJSONArray(s).getDouble(i));
+                }
 
                 Instant instant = parseTime(time.getString(i));
                 weathers.put(instant, new Weather(map));
