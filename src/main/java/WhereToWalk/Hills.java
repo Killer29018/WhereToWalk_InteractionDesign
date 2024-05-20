@@ -80,9 +80,8 @@ public class Hills {
             JSONArray arr = tmp.getJSONArray("hills");
 
             // Retrieve the current location of the user based on their public ip
-            LocationFinder finder = new LocationFinder();
-            double ulat = finder.getLatitude();
-            double ulon = finder.getLongitude();
+            double ulat = LocationFinder.getLatitude();
+            double ulon = LocationFinder.getLongitude();
 
             double min_dist = Double.MAX_VALUE;
 
@@ -122,7 +121,6 @@ public class Hills {
 
     // Sort the hills based on the stored sorter comparator
     private void sortHills() {
-        LocationFinder.LocationFinder();
         hillsResults.sort(sorter);
         pointer = 0;
     }
@@ -186,7 +184,6 @@ public class Hills {
      * Filter the list of hills based on the provided predicate
      */
     protected void filter(Predicate<Hill> p) {
-        LocationFinder.LocationFinder();
         List<Hill> filteredHills = hillsResults
                                    .stream()
                                    .filter(p)

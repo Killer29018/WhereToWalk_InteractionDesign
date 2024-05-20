@@ -27,7 +27,7 @@ public class LocationFinder {
      * and find the location where this IP corresponds to
      */
     @SuppressWarnings("deprecation")
-    public static void LocationFinder() {
+    public static void loadLocation() {
         try {
             // This Web API can be used to get your public IP
             // I didn't use java.net.InetAddress APIs because they might only return
