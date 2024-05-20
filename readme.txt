@@ -8,6 +8,9 @@ the same directory that contains 'pom.xml'
 
 Java 21 is the minimum supported version
 
+Warnings generated while the application is running can be safely ignored
+as these are due to the version of javafx being used
+
 ================================== LIBRARIES ==================================
 
 javafx:
